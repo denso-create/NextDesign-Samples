@@ -1,0 +1,11 @@
+﻿{
+  "locale": "en",
+  "resouceStrings": {
+    "Application.Name": "Excel Import Extension",
+    "Application.Description": "Sample of extension to import Excel sheet and add models.",
+    "ExtensionPoints.Ribbon.Tab": "Extensions",
+    "ExtensionPoints.CommandGroup.First": "Data Link",
+    "ExtensionPoints.Command.Run.Label": "Import Excel",
+    "ExtensionPoints.Command.Run.Description": "Import Excel sheet."
+  }
+}

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ExcelImportExtension.DataReader.ExcelReader">
+    <Position X="2.25" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAgAAAAAACAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataReader\ExcelReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExcelImportExtension.ModelBuilder.SoftwareStructureModelBuilder">
+    <Position X="7.75" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>ModelBuilder\SoftwareStructureModelBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExcelImportExtension.ExcelImportExtension">
+    <Position X="2.25" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ExcelImportExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ExcelImportExtension.DataReader.ModelDto">
+    <Position X="5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAACAAAAAAAAEAAQAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>DataReader\ModelDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

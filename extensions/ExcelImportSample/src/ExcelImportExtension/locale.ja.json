@@ -1,0 +1,11 @@
+﻿{
+  "locale": "ja",
+  "resouceStrings": {
+    "Application.Name": "Excel Import Extension",
+    "Application.Description": "Excelシートをインポートしてモデルを自動追加するエクステンションのサンプルです。",
+    "ExtensionPoints.Ribbon.Tab": "エクステンション",
+    "ExtensionPoints.CommandGroup.First": "データ連携",
+    "ExtensionPoints.Command.Run.Label": "Excel インポート",
+    "ExtensionPoints.Command.Run.Description": "Excel シートをインポートします。"
+  }
+}
