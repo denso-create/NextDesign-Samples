@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>MyExtension</PackageId>
+    <Company>DENSO CREATE INC.</Company>
+    <Copyright>Copyright © 2019-2021 DENSO CREATE INC. All rights reserved.</Copyright>
+    <Authors />
+    <Version>2.0.0</Version>
+    <Product>MyExtension</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE;DLL</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="NextDesign.Core.dll" />
+    <None Remove="NextDesign.Desktop.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NextDesign.Desktop" Version="2.0.0.11125" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="setlocal&#xD;&#xA;set EXTENSIONS_FOLDER=%25LOCALAPPDATA%25\DENSO CREATE\Next Design\extensions&#xD;&#xA;set DESTINATION_FOLDER=%25EXTENSIONS_FOLDER%25\$(ProjectName)&#xD;&#xA;&#xD;&#xA;dotnet publish --no-build&#xD;&#xA;&#xD;&#xA;if not exist &quot;%25EXTENSIONS_FOLDER%25&quot; mkdir &quot;%25EXTENSIONS_FOLDER%25&quot;&#xD;&#xA;&#xD;&#xA;del &quot;$(TargetDir)publish\NextDesign.Core.dll&quot; &quot;$(TargetDir)publish\NextDesign.Desktop.dll&quot; &quot;$(TargetDir)publish\*.pdb&quot;&gt; NUL 2&gt;&amp;1&#xD;&#xA;rd /S /Q &quot;%25DESTINATION_FOLDER%25&quot; &gt; NUL 2&gt;&amp;1&#xD;&#xA;&#xD;&#xA;echo Deploy extension into extensions sub folder: %25DESTINATION_FOLDER%25&#xD;&#xA;&#xD;&#xA;xcopy /S /I /Q /Y &quot;$(TargetDir)publish\*.*&quot; &quot;%25DESTINATION_FOLDER%25&quot;&#xD;&#xA;xcopy /S /I /Q /Y &quot;$(ProjectDir)resources&quot; &quot;%25DESTINATION_FOLDER%25\resources&quot;&#xD;&#xA;" />
+  </Target>
+
+</Project>

@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="CustomUISample.View.Editor.CustomEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomUISample.View.Editor"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid VerticalAlignment="Center" Margin="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="ビュー:" />
+                <ComboBox Height="23" Width="150" Margin="5,0" >
+                    <ComboBoxItem Name="m_FormItem" Content="フォーム" IsSelected="True"/>
+                    <ComboBoxItem Name="m_GridItem" Content="グリッド" />
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0">
+            <TextBlock Text="名前:" />
+            <TextBlock Text="{Binding Path=Name}" Margin="5,0" />
+        </StackPanel>
+
+        <Border Grid.Row="2" BorderThickness="0,1,0,0" BorderBrush="LightGray" HorizontalAlignment="Stretch" />
+
+        <!--フォーム風ビュー-->
+        <Grid Grid.Row="3" Visibility="{Binding ElementName=m_FormItem, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10,20,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="説明:" VerticalAlignment="Top" Margin="0,2,0,0" />
+            <TextBox Grid.Column="1" Text="{Binding Path=Description}" MinHeight="150" HorizontalAlignment="Stretch"/>
+
+            <TextBlock Grid.Row="1" Text="クラス名:" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=ClassName}" Margin="5,0" HorizontalAlignment="Left"/>
+
+        </Grid>
+
+        <!--グリッドビュー-->
+        <DataGrid Grid.Row="3" ItemsSource="{Binding Path=Children}"
+				  Visibility="{Binding ElementName=m_GridItem, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+				  AutoGenerateColumns="True" Margin="10,20,10,0"
+				  HorizontalScrollBarVisibility="Auto"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,11 @@
+﻿{
+  "name": "DensoCreate.NextDesign.Extensions.ShapeHighlightingSample",
+  "version": "1.0.0",
+  "publisher": "DENSO CREATE Inc.",
+  "license": "Next Design 使用許諾契約書に準ずる。Copyright (C) 2021 DENSO CREATE INC. All rights reserved.",
+
+  "main": "ShapeHighlightingSample.dll", // エントリーポイントとしてビルド結果の DLL ファイル名を指定します。
+  "lifecycle": "project", // ライフサイクルとしてプロジェクトライフサイクルを指定します。
+  "baseprofile": "車載システムソフト開発" // 対象プロジェクトの条件としてプロファイル名を指定します。
+}
+

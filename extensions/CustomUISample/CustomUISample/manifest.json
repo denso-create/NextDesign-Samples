@@ -1,0 +1,23 @@
+﻿{
+  "name": "DensoCreate.NextDesign.Extensions.CustomUISample",
+  "displayName": "%Extension.DisplayNameKey%",
+  "description": "%Extension.DescriptionKey%",
+  "version": "1.0.0",
+  "publisher": "DENSO CREATE Inc.",
+
+  "license": "Indio本体アプリケーションと同等のライセンスを必要とします。",
+
+  "env": {
+    "nextdesign": "1.1.0", // 対応するNext Designのバージョン
+
+    "engine": {
+      "engine": "dotnetdll", // "clearscript" , "dotnetdll"
+      "version": "^0.9.0"
+    }
+  },
+
+  "main": "CustomUISample.dll",
+
+  "lifecycle": "application", // "application" , "project"
+  "baseProfile": ""
+}

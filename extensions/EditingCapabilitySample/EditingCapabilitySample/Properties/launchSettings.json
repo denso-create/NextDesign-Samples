@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EditingCapabilitySample": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files (x86)\\Denso Create\\Next Design\\NextDesign.exe"
+    }
+  }
+}

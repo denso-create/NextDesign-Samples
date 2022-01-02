@@ -1,0 +1,69 @@
+﻿{
+  // エクステンション定義
+  "name": "Validation Sample",
+  "version": "1.1.0",
+  "publisher": "DENSO CREATE INC.",
+  "license": "Next Design 使用許諾契約書に準ずる。Copyright (C) 2019 DENSO CREATE INC. All rights reserved.",
+
+  "main": "ValidationSample.dll",         // エントリーポイントとしてビルド結果の DLL ファイル名を指定します。
+  "lifecycle": "project",                 // ライフサイクルとしてプロジェクトライフサイクルを指定します。
+  "baseprofile": "車載システムソフト開発",  // 対象プロジェクトの条件としてプロファイル名を指定します。
+
+  // 拡張ポイント定義
+  "extensionPoints": {
+    // リボン
+    "ribbon": {
+      "tabs": [
+        // エクステンション用に追加するリボンタブを定義します。
+        {
+          "id": "MyExtensions.MainTab",
+          "label": "My Extensions",
+          "orderAfter": "System.Help",
+          "groups": [
+            // リボンタブ内を区切るグループを定義します。
+            {
+              "id": "MyExtensions.Validation.Group",
+              "label": "モデル検証",
+              "controls": [
+                // 検証実行ボタンを定義します。
+                {
+                  "type": "Button",
+                  "id": "MyExtensions.Validation.RunButton",
+                  "label": "検証",
+                  "description": "全モデルを検証します。",
+                  "imageLarge": "resources/icon.png",
+                  "command": "Command.Validation.Run"   // 後述のコマンドに定義される検証コマンドの id を指定します。
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    // コマンド
+    "commands": [
+      // 検証処理のコマンドハンドラ `Run` を呼び出す検証コマンドを定義します。
+      {
+        "id": "Command.Validation.Run",
+        "execFunc": "Run",            // エントリーポイントのメインクラスに実装される公開メソッドを指定します。
+        "canExecWhen": {
+          "uiState": "ProjectOpened"  // コマンドの有効条件としてプロジェクトが開いていることを指定します。
+        }
+      }
+    ],
+
+    // イベント
+    "events": {
+      // モデルに関するイベントの拡張ポイントを追加します。
+      "models": [
+        {
+          "class": "*",   // 全モデル共通で検証処理を行う場合は、イベントフィルタに "*" を指定、もしくは、この行を省略します。
+          // 特定クラスだけを対象に検証処理を行う場合は、イベントフィルタに対象クラス名をカンマ区切りで列挙します。
+          // "class": "TechnicalArchitectureComponentECU,TechnicalArchitectureComponentSensor",
+          "onFieldChanged": "OnFieldChanged"  // モデルのフィールド変更時のイベントハンドラとして、エントリーポイントのメインクラスに実装される公開メソッドを登録します。
+        }
+      ]
+    }
+  }
+}

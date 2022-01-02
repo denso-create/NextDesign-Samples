@@ -1,0 +1,51 @@
+{
+  // エクステンション定義
+  "name": "HelloWorld",
+  "version": "1.1.0",
+  "publisher": "DENSO CREATE INC.",
+  "license": "Next Design 使用許諾契約書に準ずる。Copyright (C) 2019 DENSO CREATE INC. All rights reserved.",
+
+  "main": "main.cs",            // エントリーポイントとして C# スクリプトを指定します。
+  "lifecycle": "application",   // ライフサイクルとしてアプリケーションライフサイクルを指定します。
+
+  // 拡張ポイント定義
+  "extensionPoints": {
+    // リボン
+    "ribbon": {
+      "tabs": [
+        // エクステンション用に追加するリボンタブを定義します。
+        {
+          "id": "HelloWorld.MainTab",
+          "label": "Hello World",
+          "orderBefore": "System.View",
+          "groups": [
+            // リボンタブ内を区切るグループを定義します。
+            {
+              "id": "HelloWorld.FirstGroup",
+              "label": "グループ1",
+              "controls": [
+                // Say Hello ボタンを定義します。
+                {
+                  "id": "HelloWorld.SayHelloButton",
+                  "type": "Button",
+                  "label": "Say Hello",
+                  "imageLarge": "images/About.png",
+                  "command": "Command.SayHello"    // 後述のコマンドに定義されるコマンドの id を指定します。
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    // コマンド
+    "commands": [
+      // コマンドハンドラ `SayHello` を呼び出すコマンドを定義します。
+      {
+        "id": "Command.SayHello",
+        "execFunc": "SayHello"    // エントリーポイントに実装される公開関数を指定します。
+      }
+    ]
+  }
+}
