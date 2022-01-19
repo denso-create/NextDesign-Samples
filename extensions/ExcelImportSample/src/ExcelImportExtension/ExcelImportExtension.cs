@@ -40,8 +40,8 @@ namespace ExcelImportExtension
 				// ---------------------------------------------------
 				// Excel ファイルを選択します。
 				// ---------------------------------------------------
-				var excelReader = new ExcelReader();
-				var filePath = excelReader.ShowFileSelectDialog();
+				var filter = "Excel Files (*.xls, *.xlsx)|*.xls;*.xlsx";
+				var filePath = m_Context.App.Window.UI.ShowOpenFileDialog(filter: filter);
 				if (string.IsNullOrEmpty(filePath))
 				{
 					return;
@@ -50,6 +50,7 @@ namespace ExcelImportExtension
 				// ---------------------------------------------------
 				// Excel ファイルからデータを読み込みます。
 				// ---------------------------------------------------
+				var excelReader = new ExcelReader();
 				var layerDtos = excelReader.Read(filePath);
 
 				// ---------------------------------------------------

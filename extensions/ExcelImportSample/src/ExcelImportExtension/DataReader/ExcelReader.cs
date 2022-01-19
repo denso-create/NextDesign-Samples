@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using NPOI.SS.UserModel;
+using NextDesign.Desktop;
 
 namespace ExcelImportExtension.DataReader
 {
@@ -70,24 +68,6 @@ namespace ExcelImportExtension.DataReader
 			} while (rowIndex++ < worksheet.LastRowNum);
 
 			return layerList;
-		}
-
-		/// <summary>
-		/// Excelファイルを選択するダイアログを表示します。
-		/// </summary>
-		public string ShowFileSelectDialog()
-		{
-			OpenFileDialog openFileDialog = new OpenFileDialog
-			{
-				Filter = "Excel Files (*.xls, *.xlsx)|*.xls;*.xlsx"
-			};
-
-			if (openFileDialog.ShowDialog() != DialogResult.OK)
-			{
-				return null;
-			}
-
-			return openFileDialog.FileName;
 		}
 
 		/// <summary>

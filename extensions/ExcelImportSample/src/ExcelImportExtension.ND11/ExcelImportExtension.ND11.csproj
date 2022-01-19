@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6AF82F63-A3E4-4CBA-93BE-EB10261056B6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExcelImportExtension.ND11</RootNamespace>
+    <AssemblyName>ExcelImportExtension.ND11</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\ExcelImportExtension\manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="..\ExcelImportExtension\DataReader\ExcelReader.cs" />
+    <Compile Include="..\ExcelImportExtension\DataReader\ModelDto.cs" />
+    <Compile Include="..\ExcelImportExtension\ExcelImportExtension.cs" />
+    <Compile Include="..\ExcelImportExtension\ModelBuilder\SoftwareStructureModelBuilder.cs" />
+    <EmbeddedResource Include="..\ExcelImportExtension\Resources\images\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NextDesign.Core">
+      <HintPath>.\lib\NextDesign.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NextDesign.Desktop">
+      <HintPath>.\lib\NextDesign.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>.\lib\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>.\lib\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>.\lib\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>.\lib\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>setlocal
+set EXTENSIONS_FOLDER=%25LOCALAPPDATA%25\DENSO CREATE\Next Design\extensions
+set DESTINATION_FOLDER=%25EXTENSIONS_FOLDER%25\$(ProjectName)
+
+xcopy /S /I /Q /Y "$(ProjectDir)..\ExcelImportExtension\resources" "$(TargetDir)resources"
+del "$(TargetDir)NextDesign.Core.dll" "$(TargetDir)NextDesign.Desktop.dll" &gt; NUL 2&gt;&amp;1
+
+if not exist "%25EXTENSIONS_FOLDER%25" mkdir "%25EXTENSIONS_FOLDER%25"
+rd /S /Q "%25DESTINATION_FOLDER%25" &gt; NUL 2&gt;&amp;1
+
+echo Deploy extension into extensions sub folder: %25DESTINATION_FOLDER%25
+xcopy /S /I /Q /Y "$(TargetDir)*.*" "%25DESTINATION_FOLDER%25"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
