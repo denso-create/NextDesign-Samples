@@ -7,8 +7,8 @@
     <ProjectGuid>{6AF82F63-A3E4-4CBA-93BE-EB10261056B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExcelImportExtension.ND11</RootNamespace>
-    <AssemblyName>ExcelImportExtension.ND11</AssemblyName>
+    <RootNamespace>ExcelImportExtension</RootNamespace>
+    <AssemblyName>ExcelImportExtension</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,14 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\ExcelImportExtension\*.cs" />
+    <Compile Include="..\ExcelImportExtension\*\*.cs" />
+    <EmbeddedResource Include="..\ExcelImportExtension\Resources\**\*.*" />
     <None Include="..\ExcelImportExtension\manifest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Include="..\ExcelImportExtension\DataReader\ExcelReader.cs" />
-    <Compile Include="..\ExcelImportExtension\DataReader\ModelDto.cs" />
-    <Compile Include="..\ExcelImportExtension\ExcelImportExtension.cs" />
-    <Compile Include="..\ExcelImportExtension\ModelBuilder\SoftwareStructureModelBuilder.cs" />
-    <EmbeddedResource Include="..\ExcelImportExtension\Resources\images\import.png" />
+    <None Include="..\ExcelImportExtension\locale.en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\ExcelImportExtension\locale.ja.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="NextDesign.Core">
