@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NextDesign.Desktop" Version="2.0.0.11125" />
+    <PackageReference Include="NextDesign.Desktop" Version="2.0.1.20104" />
   </ItemGroup>
 
   <ItemGroup>
