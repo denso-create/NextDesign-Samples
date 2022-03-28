@@ -14,11 +14,14 @@
 
 ## 利用方法
 
-* `extensions\ExcelImportExtension.zip` を展開して、`ExcelImportExtension` フォルダ自身を次の `extensions` フォルダの直下にコピーします。（`extensions` フォルダがなければ作成してください。）
+* 次の Visual Studio Solution を開き、ビルドしてください。
 
-    > {ユーザーのホームパス}\AppData\Local\DENSO CREATE\Next Design\extensions\
+    > src\ExcelImportExtension.sln
 
-    ユーザーのホームパスの例： C:\Users\user-name
+    なお、ビルドするためには、事前に次のパッケージをインストールしておく必要があります。
+
+    > .NET Core 3.1 SDK  
+    > <https://dotnet.microsoft.com/en-us/download/dotnet/3.1>
 
 * Next Design で次のプロジェクトを開きます。
 
@@ -42,7 +45,7 @@
 
 ## 構成ファイル
 
-Visual Studio 2017 以降でビルド・デバッグ実行が可能なエクステンション開発プロジェクト一式が含まれています。
+Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクステンション開発プロジェクト一式が含まれています。
 
 * src
     * ExcelImportExtension.sln ほかプロジェクト一式
@@ -52,10 +55,6 @@ Visual Studio 2017 以降でビルド・デバッグ実行が可能なエクス�
     * ExcelImportProject.iproj
     * ExcelImportData.xlsx
 
-なお、プロジェクトをビルドする場合は、事前に次のパッケージをインストールしておく必要があります。
-
-> .NET Framework 4.6.2 Developer Pack  
-> <https://dotnet.microsoft.com/download/visual-studio-sdks>
 
 ## プログラムのポイント
 
@@ -73,9 +72,9 @@ Visual Studio 2017 以降でビルド・デバッグ実行が可能なエクス�
 
 * Excelファイルの操作にはオープンソースの NPOI を利用しています。
 
-    > https://github.com/tonyqus/npoi/blob/master/README.md
+    > https://github.com/nissl-lab/npoi  
 
-    > https://qiita.com/hukatama024e/items/37427f2578a8987645dd
+    > https://www.nuget.org/packages/NPOI/  
 
 ### Next Design への書き込み
 

@@ -2,7 +2,7 @@ THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
 
 本プログラムでは次のサードパーティソフトウェアを利用しています。
 
-* NPOI version 2.4.1 (https://www.nuget.org/packages/NPOI/)
+* NPOI version 2.5.5 (https://www.nuget.org/packages/NPOI/)
 
 %% NPOI NOTICES AND INFORMATION BEGIN HERE
 =========================================
