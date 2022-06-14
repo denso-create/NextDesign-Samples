@@ -1,0 +1,6 @@
+{
+	"$schema": "manifest.schema.json",
+	"name": "ExtensionPointsSample",
+	"main": "ExtensionPointsSample.dll",
+	"lifecycle": "application"
+}
