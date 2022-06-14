@@ -4,19 +4,19 @@ using NextDesign.Desktop.ExtensionPoints;
 namespace ExtensionPointsSample.Events
 {
     /// <summary>
-    /// アプリケーション実行イベント
+    /// モデルフィールド変更後イベント
     /// </summary>
-    internal class UserBaseModel : ApplicationAfterStartEventHandlerBase
+    internal class ModelFieldChanged : ModelsFieldChangedEventHandlerBase
     {
         /// <summary>
         /// イベントハンドラの処理です。
         /// </summary>
         /// <param name="c"></param>
         /// <param name="p"></param>
-        protected override void OnHandle(IEventContext c, AfterStartEventParams p)
+        protected override void OnHandle(IEventContext c, ModelFieldChangedEventParams p)
         {
             // イベント処理を実装します。
-            Output.WriteLine(ExtensionName, $"Events: ApplicationAfterStart Event. Version: {App.Version}");
+            Output.WriteLine(ExtensionName, $"Events: ModelsFieldChanged Event. :{p.Model.Name} - {p.Field}");
 
             // 情報ウィンドウをアクティブにします
             App.Window.IsInformationPaneVisible = true;

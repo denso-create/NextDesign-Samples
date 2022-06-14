@@ -20,6 +20,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\About.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NextDesign.Desktop" Version="*" />
     <PackageReference Include="NextDesign.Desktop.ExtensionPoints" Version="*" />
   </ItemGroup>
@@ -29,8 +33,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Events\" />
+    <Resource Include="Resources\About.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="pkgContents\samples\" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
