@@ -32,27 +32,27 @@ namespace ExtensionPointsSample
             var group5 = tab.AddGroup("AddModel");
 
             // ボタン(大)
-            group0.AddLargeButton<HelloCommand>("Large Button", "Resources/About.png");
-            group5.AddLargeButton<AddSampleModelCommand>("Add SampleModel", "Resources/About.png");
+            group0.AddLargeButton<HelloCommand>("Large Button", "Resources/button-cursor-1.png");
+            group5.AddLargeButton<AddSampleModelCommand>("Add SampleModel", "Resources/button-cursor-2.png");
 
             // スタックパネル
             var stackPanel = group1.AddStackPanel();
-            stackPanel.AddSmallButton<HelloCommand>("smallbutton", "Resources/About.png"); // ボタン
+            stackPanel.AddSmallButton<HelloCommand>("smallbutton", "Resources/button-cursor-3.png"); // ボタン
             stackPanel.AddCheckBox<CheckParamCommand>("checkbox", "MyProperty", true); // チェックボックス
 
             // ボタングループ
             var buttonGroup = group2.AddButtonGroup();
-            buttonGroup.AddSmallButton<HelloCommand>("button1", "Resources/About.png"); // ボタン
-            buttonGroup.AddSmallButton<HelloCommand>("button2", "Resources/About.png"); // ボタン
+            buttonGroup.AddSmallButton<HelloCommand>("button1", "Resources/button-cursor-4.png"); // ボタン
+            buttonGroup.AddSmallButton<HelloCommand>("button2", "Resources/button-cursor-5.png"); // ボタン
 
             // メニュー
-            var menu = group3.AddMenu("Menu", "Resources/About.png");
-            menu.AddSmallButton<HelloCommand>("smallbutton", "Resources/About.png"); // ボタン
+            var menu = group3.AddMenu("Menu", "Resources/Resources/button-cursor-6.png");
+            menu.AddSmallButton<HelloCommand>("smallbutton", "Resources/button-cursor-7.png"); // ボタン
 
             // スプリットボタン
-            var splitButton = group4.AddSplitButton<HelloCommand>("Split Button", "Resources/About.png");
+            var splitButton = group4.AddSplitButton<HelloCommand>("Split Button", "Resources/button-cursor-8.png");
             var spl_menu = splitButton.AddMenu();
-            spl_menu.AddSmallButton<HelloCommand>("smallbutton", "Resources/About.png"); // ボタン
+            spl_menu.AddSmallButton<HelloCommand>("smallbutton", "Resources/button-cursor-9.png"); // ボタン
 
             // イベント
             ExtensionPoints.Events.Application.RegisterOnAfterStart<UserBaseModel>();
