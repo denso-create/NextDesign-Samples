@@ -1,0 +1,533 @@
+{
+  "Type": "Project",
+  "TopElementId": "fe41a56d-8013-407c-8e0c-5ecfc64dca4b",
+  "SchemaVersion": "11.0",
+  "Project": {
+    "Id": "fe41a56d-8013-407c-8e0c-5ecfc64dca4b",
+    "Name": "ExtensionPointsSample",
+    "Summary": "",
+    "Group": null,
+    "Icon": "",
+    "OutputModelPath": false
+  },
+  "Profiles": [
+    {
+      "Id": "6260fe12-7099-41f2-b67d-e5ea64b87083",
+      "Name": "ExtensionPointsSample",
+      "ProtectKey": null,
+      "IsProtected": false,
+      "Metamodels": {
+        "Packages": [
+          {
+            "Id": "System",
+            "Name": "System",
+            "FullName": "System"
+          },
+          {
+            "Id": "System.Behavior",
+            "Name": "Behavior",
+            "FullName": "System.Behavior"
+          },
+          {
+            "Id": "DensoCreate",
+            "Name": "DensoCreate",
+            "FullName": "DensoCreate"
+          },
+          {
+            "Id": "DensoCreate.Indio",
+            "Name": "Indio",
+            "FullName": "DensoCreate.Indio"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF",
+            "Name": "IMF",
+            "FullName": "DensoCreate.Indio.IMF"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Model",
+            "Name": "Model",
+            "FullName": "DensoCreate.Indio.IMF.Model"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Model.RepresentationModel",
+            "Name": "RepresentationModel",
+            "FullName": "DensoCreate.Indio.IMF.Model.RepresentationModel"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Extensions",
+            "Name": "Extensions",
+            "FullName": "DensoCreate.Indio.IMF.Extensions"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Extensions.Diagram",
+            "Name": "Diagram",
+            "FullName": "DensoCreate.Indio.IMF.Extensions.Diagram"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Extensions.Sequence",
+            "Name": "Sequence",
+            "FullName": "DensoCreate.Indio.IMF.Extensions.Sequence"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Extensions.Form",
+            "Name": "Form",
+            "FullName": "DensoCreate.Indio.IMF.Extensions.Form"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Extensions.ProductLine",
+            "Name": "ProductLine",
+            "FullName": "DensoCreate.Indio.IMF.Extensions.ProductLine"
+          },
+          {
+            "Id": "DensoCreate.Indio.IMF.Extensions.Custom",
+            "Name": "Custom",
+            "FullName": "DensoCreate.Indio.IMF.Extensions.Custom"
+          },
+          {
+            "Id": "21156a54-d3a3-45e5-84bd-8ec63d86907c",
+            "Name": "ExtensionPointsSample",
+            "FullName": "ExtensionPointsSample",
+            "DisplayName": "ExtensionPointsSample",
+            "Tags": [
+              {
+                "Name": "System.Root",
+                "Value": "true"
+              }
+            ],
+            "OwnedTypes": [
+              {
+                "Id": "23d63a5e-7104-48d7-8975-9a31ffd6b6ee",
+                "TypeKind": "Class",
+                "Name": "Packages",
+                "DisplayName": "Packages",
+                "Tags": [
+                  {
+                    "Name": "System.ShowInModelNavigator",
+                    "Value": "True"
+                  },
+                  {
+                    "Name": "System.ShowInTracePage",
+                    "Value": "True"
+                  },
+                  {
+                    "Name": "System.IsUnitizable",
+                    "Value": "True"
+                  },
+                  {
+                    "Name": "System.Type",
+                    "Value": "Entity"
+                  },
+                  {
+                    "Name": "System.Icon",
+                    "Value": "embed://document/folder_yellow"
+                  },
+                  {
+                    "Name": "System.ModelRoot",
+                    "Value": "True"
+                  }
+                ],
+                "Fields": [
+                  {
+                    "Id": "ad7fa48f-ac92-4c4c-93bf-9976936c8751",
+                    "FieldType": "Property",
+                    "Name": "Name",
+                    "Override": true,
+                    "Unique": true,
+                    "LowerBound": 1,
+                    "UpperBound": 1,
+                    "ValueTypeName": "String",
+                    "ValueTypeKind": "Primitive",
+                    "DisplayName": "名前",
+                    "Tags": [
+                      {
+                        "Name": "System.Name",
+                        "Value": "true"
+                      }
+                    ]
+                  },
+                  {
+                    "Id": "657d014c-b5a2-4f99-b15c-3bd2e0566e61",
+                    "FieldType": "Property",
+                    "Name": "Description",
+                    "Unique": true,
+                    "LowerBound": 1,
+                    "UpperBound": 1,
+                    "ValueTypeName": "String",
+                    "ValueTypeKind": "Primitive",
+                    "DisplayName": "説明",
+                    "Tags": [
+                      {
+                        "Name": "System.Description",
+                        "Value": "true"
+                      }
+                    ]
+                  },
+                  {
+                    "Id": "72337c79-73b5-4115-80d3-1954763ba8b5",
+                    "FieldType": "Property",
+                    "Name": "SampleModel",
+                    "Unique": true,
+                    "LowerBound": 0,
+                    "UpperBound": -1,
+                    "RelationshipClassId": "a31edf41-f578-4895-a6d4-19fc13564190",
+                    "ValueTypeName": "ExtensionPointsSample.SampleModel",
+                    "ValueTypeKind": "Class",
+                    "ValueTypeId": "e397c4fb-0021-4e04-ac21-70b5d1b1195f",
+                    "DisplayName": "SampleModel"
+                  }
+                ]
+              },
+              {
+                "Id": "e397c4fb-0021-4e04-ac21-70b5d1b1195f",
+                "TypeKind": "Class",
+                "Name": "SampleModel",
+                "DisplayName": "SampleModel",
+                "Tags": [
+                  {
+                    "Name": "System.ShowInModelNavigator",
+                    "Value": "True"
+                  },
+                  {
+                    "Name": "System.ShowInTracePage",
+                    "Value": "True"
+                  },
+                  {
+                    "Name": "System.IsUnitizable",
+                    "Value": "True"
+                  },
+                  {
+                    "Name": "System.Type",
+                    "Value": "Entity"
+                  }
+                ],
+                "Fields": [
+                  {
+                    "Id": "2620aa1d-3fa6-4a5b-b62e-8b5f0c8739ab",
+                    "FieldType": "Property",
+                    "Name": "Name",
+                    "Override": true,
+                    "Unique": true,
+                    "LowerBound": 1,
+                    "UpperBound": 1,
+                    "ValueTypeName": "String",
+                    "ValueTypeKind": "Primitive",
+                    "DisplayName": "名前",
+                    "Tags": [
+                      {
+                        "Name": "System.Name",
+                        "Value": "true"
+                      }
+                    ]
+                  },
+                  {
+                    "Id": "1a87d14d-d212-4219-8518-086831a52cde",
+                    "FieldType": "Property",
+                    "Name": "Description",
+                    "Unique": true,
+                    "LowerBound": 1,
+                    "UpperBound": 1,
+                    "ValueTypeName": "String",
+                    "ValueTypeKind": "Primitive",
+                    "DisplayName": "説明",
+                    "Tags": [
+                      {
+                        "Name": "System.Description",
+                        "Value": "true"
+                      }
+                    ]
+                  },
+                  {
+                    "Id": "e3e520fc-219b-4d9e-a6b5-5c7042d02635",
+                    "FieldType": "Reference",
+                    "Name": "___anonymous___owner_related_to_エンティティ_1_エンティティ_2",
+                    "Unique": true,
+                    "LowerBound": 0,
+                    "UpperBound": -1,
+                    "RelationshipClassId": "a31edf41-f578-4895-a6d4-19fc13564190",
+                    "ValueTypeName": "ExtensionPointsSample.Packages",
+                    "ValueTypeKind": "Class",
+                    "ValueTypeId": "23d63a5e-7104-48d7-8975-9a31ffd6b6ee",
+                    "DisplayName": "親エンティティ_1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Id": "1fb43695-9d16-4b3d-aa13-307ab722e2e3",
+            "Name": "___AnonymousTypePackage",
+            "FullName": "ExtensionPointsSample.___AnonymousTypePackage",
+            "DisplayName": "匿名型",
+            "OwnedTypes": [
+              {
+                "Id": "a31edf41-f578-4895-a6d4-19fc13564190",
+                "TypeKind": "EmbedRelationship",
+                "Name": "___anonymous___embedrelationship_エンティティ_1_エンティティ_2",
+                "IsOneway": true,
+                "DisplayName": "エンティティ_2の所有",
+                "Target": {
+                  "Id": "e3e520fc-219b-4d9e-a6b5-5c7042d02635",
+                  "RoleType": "RoleParent",
+                  "Name": "___anonymous___owner_related_to_エンティティ_1_エンティティ_2",
+                  "LowerBound": 0,
+                  "UpperBound": -1,
+                  "ValueTypeName": "ExtensionPointsSample.Packages",
+                  "ValueTypeKind": "Class",
+                  "ValueTypeId": "23d63a5e-7104-48d7-8975-9a31ffd6b6ee"
+                },
+                "Source": {
+                  "Id": "72337c79-73b5-4115-80d3-1954763ba8b5",
+                  "RoleType": "RoleChild",
+                  "Name": "SampleModel",
+                  "LowerBound": 0,
+                  "UpperBound": -1,
+                  "ValueTypeName": "ExtensionPointsSample.SampleModel",
+                  "ValueTypeKind": "Class",
+                  "ValueTypeId": "e397c4fb-0021-4e04-ac21-70b5d1b1195f"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "ViewDefinitions": [
+        {
+          "ViewType": "Form",
+          "Id": "bfdc9388-b93a-4c11-8560-1569a19c4940",
+          "DisplayName": "詳細",
+          "Name": "Detail",
+          "MetamodelId": "23d63a5e-7104-48d7-8975-9a31ffd6b6ee",
+          "ShowIcon": false,
+          "IsReadOnly": false,
+          "DisplayTarget": "Both",
+          "ShowTitle": false,
+          "OutlineNumberLevel": 0,
+          "AutoGenerated": false,
+          "FixColumnIndex": 0,
+          "RootControl": {
+            "ControlType": "EntityControl",
+            "Id": "8f1a2b09-c430-4e2b-9eae-e99456f1de19",
+            "Name": "エンティティ_1",
+            "MetamodelId": "23d63a5e-7104-48d7-8975-9a31ffd6b6ee",
+            "ShowIcon": false,
+            "IsReadOnly": false,
+            "IsReference": false,
+            "HasPathMultipleSteps": false,
+            "ShowTitle": true,
+            "ShowTitleIcon": false,
+            "ShowGridLine": false,
+            "TitleBindingPath": "Name",
+            "Controls": [
+              {
+                "ControlType": "Text",
+                "Id": "7f6df536-108c-4896-9b5b-f8b422ed566e",
+                "DisplayName": "説明",
+                "Name": "Description",
+                "ShowIcon": false,
+                "IsReadOnly": false,
+                "Path": "Description",
+                "IsReference": false,
+                "HasPathMultipleSteps": false,
+                "ShowTitle": true,
+                "ShowTitleIcon": false,
+                "ShowGridLine": false
+              },
+              {
+                "ControlType": "Grid",
+                "Id": "a1912da9-3dac-4b47-a983-076ddd71fd56",
+                "DisplayName": "SampleModel",
+                "Name": "SampleModel",
+                "ShowIcon": false,
+                "IsReadOnly": false,
+                "Path": "SampleModel",
+                "IsReference": false,
+                "HasPathMultipleSteps": false,
+                "ShowTitle": true,
+                "ShowTitleIcon": false,
+                "ShowGridLine": false,
+                "BulletType": "Number",
+                "RowHeight": "Auto",
+                "Columns": [
+                  {
+                    "ControlType": "GridColumn",
+                    "Id": "f054b8be-e610-4dc8-a2f5-322df2b9306c",
+                    "DisplayName": "名前",
+                    "Name": "Name",
+                    "MetamodelId": "e397c4fb-0021-4e04-ac21-70b5d1b1195f",
+                    "ShowIcon": false,
+                    "IsReadOnly": false,
+                    "Path": "Name",
+                    "IsReference": false,
+                    "HasPathMultipleSteps": false,
+                    "ShowTitle": true,
+                    "ShowTitleIcon": false,
+                    "ShowGridLine": false,
+                    "Width": 100,
+                    "MinWidth": 40,
+                    "Order": 0,
+                    "ColumnControlId": "4f655c2f-1dea-4c27-9f3e-ef8e988c7238",
+                    "ColumnControlType": "Text"
+                  }
+                ]
+              }
+            ]
+          },
+          "Layout": {
+            "ViewElementType": "DocumentLayout",
+            "TitleWidth": 250
+          }
+        },
+        {
+          "ViewType": "Form",
+          "Id": "04b09456-0bf7-4ab3-ba33-15bbbaf8d642",
+          "DisplayName": "詳細",
+          "Name": "Detail",
+          "MetamodelId": "e397c4fb-0021-4e04-ac21-70b5d1b1195f",
+          "ShowIcon": false,
+          "IsReadOnly": false,
+          "DisplayTarget": "Both",
+          "ShowTitle": false,
+          "OutlineNumberLevel": 0,
+          "AutoGenerated": false,
+          "FixColumnIndex": 0,
+          "RootControl": {
+            "ControlType": "EntityControl",
+            "Id": "33deb611-827e-43de-a426-5ccb20480dd5",
+            "Name": "エンティティ_2",
+            "MetamodelId": "e397c4fb-0021-4e04-ac21-70b5d1b1195f",
+            "ShowIcon": false,
+            "IsReadOnly": false,
+            "IsReference": false,
+            "HasPathMultipleSteps": false,
+            "ShowTitle": true,
+            "ShowTitleIcon": false,
+            "ShowGridLine": false,
+            "TitleBindingPath": "Name",
+            "Controls": [
+              {
+                "ControlType": "Text",
+                "Id": "460ae9da-9eeb-43ae-b1f5-45a35ba34269",
+                "DisplayName": "説明",
+                "Name": "Description",
+                "ShowIcon": false,
+                "IsReadOnly": false,
+                "Path": "Description",
+                "IsReference": false,
+                "HasPathMultipleSteps": false,
+                "ShowTitle": true,
+                "ShowTitleIcon": false,
+                "ShowGridLine": false
+              }
+            ]
+          },
+          "Layout": {
+            "ViewElementType": "DocumentLayout",
+            "TitleWidth": 250
+          }
+        }
+      ]
+    }
+  ],
+  "ProfileEditors": [
+    {
+      "Id": "a264e8c2-df51-4d38-9eab-b27117202e58",
+      "Name": "新しいクラス図",
+      "DisplayName": "クラス図",
+      "OwnerPackageId": "21156a54-d3a3-45e5-84bd-8ec63d86907c",
+      "Order": 0,
+      "Nodes": [
+        {
+          "Id": "c82d76d4-5543-442e-a28f-1fbd9da680e9",
+          "LocationX": 339,
+          "LocationY": 107,
+          "ZOrder": 0,
+          "Width": 139,
+          "Height": 96,
+          "NodeType": "Entity",
+          "MetamodelId": "23d63a5e-7104-48d7-8975-9a31ffd6b6ee",
+          "ForeColor": "#FFFFFF",
+          "BackColor": "#498ABC",
+          "BorderColor": "#000000"
+        },
+        {
+          "Id": "923c3012-e1af-4140-b176-c71a4c283ca3",
+          "LocationX": 285,
+          "LocationY": 258,
+          "ZOrder": 1,
+          "Width": 120,
+          "Height": 80,
+          "NodeType": "Entity",
+          "MetamodelId": "e397c4fb-0021-4e04-ac21-70b5d1b1195f",
+          "ForeColor": "#FFFFFF",
+          "BackColor": "#498ABC",
+          "BorderColor": "#000000"
+        }
+      ],
+      "Connectors": [
+        {
+          "Id": "0f4247d6-8af5-43b0-be16-991d5bcfe180",
+          "SourceId": "c82d76d4-5543-442e-a28f-1fbd9da680e9",
+          "TargetId": "923c3012-e1af-4140-b176-c71a4c283ca3",
+          "LineType": "Straight",
+          "ConnectorType": "Embed",
+          "MetamodelId": "a31edf41-f578-4895-a6d4-19fc13564190",
+          "BackColor": "#000000",
+          "BorderColor": "#000000"
+        }
+      ]
+    }
+  ],
+  "Entities": [
+    {
+      "Id": "8ba4d610-0483-4b05-b613-b7b032f9523a",
+      "EntityType": "Entity",
+      "Name": "Packages",
+      "MetamodelId": "23d63a5e-7104-48d7-8975-9a31ffd6b6ee",
+      "Metamodel": "Packages",
+      "Fields": {
+        "Name": "Packages"
+      }
+    },
+    {
+      "Id": "c3b8accb-726b-453d-ad62-bec6bae00534",
+      "EntityType": null,
+      "Name": "ExtensionPointsSample",
+      "MetamodelId": "System.Design.___DesignModel",
+      "Metamodel": "DesignModel",
+      "Fields": {
+        "Name": "ExtensionPointsSample"
+      }
+    },
+    {
+      "Id": "fe41a56d-8013-407c-8e0c-5ecfc64dca4b",
+      "EntityType": null,
+      "Name": "ExtensionPointsSample",
+      "MetamodelId": "System.Project.ProjectClass",
+      "Metamodel": "ProjectClass",
+      "Fields": {
+        "Name": "ExtensionPointsSample",
+        "Description": ""
+      }
+    }
+  ],
+  "Relations": [
+    {
+      "Id": "20060d12-adb6-49ac-a2ee-fb0718d4560e",
+      "RelationType": "Embed",
+      "MetamodelId": "System.Core.___ModelRoot_RootModels",
+      "Metamodel": "___ModelRoot_RootModels",
+      "SourceId": "fe41a56d-8013-407c-8e0c-5ecfc64dca4b",
+      "TargetId": "c3b8accb-726b-453d-ad62-bec6bae00534",
+      "TargetIndex": -1
+    },
+    {
+      "Id": "9546b121-d675-4777-980f-9bc50ee33098",
+      "RelationType": "Embed",
+      "MetamodelId": "System.Design.___RootToEntities",
+      "Metamodel": "___RootToEntities",
+      "SourceId": "c3b8accb-726b-453d-ad62-bec6bae00534",
+      "TargetId": "8ba4d610-0483-4b05-b613-b7b032f9523a",
+      "TargetIndex": -1
+    }
+  ]
+}
