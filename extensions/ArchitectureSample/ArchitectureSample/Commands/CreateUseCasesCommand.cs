@@ -2,10 +2,6 @@
 using ArchitectureSample.Core.Services;
 using NextDesign.Desktop;
 using NextDesign.Desktop.ExtensionPoints;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 
 namespace ArchitectureSample.Commands
 {
@@ -34,9 +30,6 @@ namespace ArchitectureSample.Commands
         /// コマンド実行可否の実装（任意です）
         /// </summary>
         /// <returns></returns>
-        protected override bool OnCanExecute()
-        {
-            return true;
-        }
+        protected override bool OnCanExecute() => true;
     }
 }

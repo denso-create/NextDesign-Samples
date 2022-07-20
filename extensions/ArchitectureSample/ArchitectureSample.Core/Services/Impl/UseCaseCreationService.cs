@@ -1,13 +1,14 @@
-﻿using NextDesign.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using NextDesign.Core;
 
 namespace ArchitectureSample.Core.Services.Impl
 {
+    /// <summary>
+    /// ユースケースを作成するサービスの実装
+    /// </summary>
     internal class UseCaseCreationService : IUseCaseCreationService
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IEnumerable<IModel> CreateUseCases(IModel owner, IEnumerable<string> names)
         {
             var createdModels = new List<IModel>();
