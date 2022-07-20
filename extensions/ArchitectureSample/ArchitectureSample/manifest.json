@@ -1,0 +1,6 @@
+{
+	"$schema": "manifest.schema.json",
+	"name": "ArchitectureSample",
+	"main": "ArchitectureSample.dll",
+	"lifecycle": "application"
+}
