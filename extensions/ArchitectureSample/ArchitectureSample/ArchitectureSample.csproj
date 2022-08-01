@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PackageId>ArchitectureSample</PackageId>
+    <Version>1.0.0</Version>
+    <PackageProjectUrl>https://www.your-web-here.com/</PackageProjectUrl>
+    <Authors>Me</Authors>
+    <Company>Me</Company>
+    <Product>ArchitectureSample</Product>
+    <Description>ArchitectureSampleのタイトル
+ここからArchitectureSampleの説明を記載して下さい。
+</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyName>ArchitectureSample</AssemblyName>
+    <RootNamespace>ArchitectureSample</RootNamespace>
+    <Copyright>Me</Copyright>
+    <RepositoryUrl></RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NextDesign.Desktop" Version="*" />
+    <PackageReference Include="NextDesign.Desktop.ExtensionPoints" Version="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArchitectureSample.Core\ArchitectureSample.Core.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set local&#xD;&#xA;set COPY_TARGET_FOLDER=%25LOCALAPPDATA%25\DENSO CREATE\Next Design\extensions\$(TargetName)&#xD;&#xA;&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo # Publish &#xD;&#xA;echo # ----------------------------&#xD;&#xA;dotnet publish &quot;$(ProjectPath)&quot; -c $(ConfigurationName) --no-build &#xD;&#xA;&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo # Copy to Extension Fodler&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo Copy files to %25COPY_TARGET_FOLDER%25 ...&#xD;&#xA;&#xD;&#xA;if exist &quot;%25COPY_TARGET_FOLDER%25&quot; rmdir &quot;%25COPY_TARGET_FOLDER%25&quot; /S /Q&#xD;&#xA;xcopy &quot;$(projectDir)$(OutDir)publish&quot; &quot;%25LOCALAPPDATA%25\DENSO CREATE\Next Design\extensions\$(TargetName)&quot; /Y /I /E&#xD;&#xA;&#xD;&#xA;rem delete NextDesign dll files&#xD;&#xA;if exist &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Core.dll&quot; del &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Core.dll&quot;&#xD;&#xA;if exist &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Desktop.dll&quot; del &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Desktop.dll&quot;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="if exist &quot;$(projectDir)$(OutDir)publish&quot; rmdir &quot;$(projectDir)$(OutDir)publish&quot; /S /Q" />
+  </Target>
+
+</Project>
