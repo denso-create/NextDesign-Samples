@@ -46,7 +46,7 @@ namespace ExtensionPointsSample
             buttonGroup.AddSmallButton<HelloCommand>("button2", "Resources/button-cursor-5.png"); // ボタン
 
             // メニュー
-            var menu = group3.AddMenu("Menu", "Resources/Resources/button-cursor-6.png");
+            var menu = group3.AddMenu("Menu", "Resources/button-cursor-6.png");
             menu.AddSmallButton<HelloCommand>("smallbutton", "Resources/button-cursor-7.png"); // ボタン
 
             // スプリットボタン
