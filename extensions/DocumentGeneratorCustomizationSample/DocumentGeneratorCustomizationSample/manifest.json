@@ -1,0 +1,10 @@
+{
+	"$schema": "manifest.schema.json",
+	"name": "DensoCreate.NextDesign.Extensions.DocumentGeneratorCustomizationSample", // すべてのエクステンションでユニークな名前を指定します。
+	"main": "DocumentGeneratorCustomizationSample.dll", // プロジェクトのアセンブリ名と同じ DLL ファイル名を指定します。
+	"lifecycle": "application",
+	"baseprofile": "*", // 対象プロジェクトの条件としてプロファイル名を指定します。
+
+	"publisher": "DENSO CREATE INC.",
+	"license": "Next Design 使用許諾契約書に準ずる。Copyright (C) 2022 DENSO CREATE INC. All rights reserved."
+}

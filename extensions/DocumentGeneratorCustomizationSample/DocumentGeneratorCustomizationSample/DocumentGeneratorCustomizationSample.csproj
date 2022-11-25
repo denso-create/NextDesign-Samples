@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PackageId>DocumentGeneratorCustomizationSample</PackageId>
+    <Version>1.0.0</Version>
+    <PackageProjectUrl>https://www.your-web-here.com/</PackageProjectUrl>
+    <Authors>Me</Authors>
+    <Company>Me</Company>
+    <Product>DocumentGeneratorCustomizationSample</Product>
+    <Description>DocumentGeneratorCustomizationSampleのタイトル
+ここからDocumentGeneratorCustomizationSampleの説明を記載して下さい。
+</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NextDesign.Desktop" Version="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="pkgContents\samples\readme.md">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set local&#xD;&#xA;set COPY_TARGET_FOLDER=%25LOCALAPPDATA%25\DENSO CREATE\Next Design\extensions\$(TargetName)&#xD;&#xA;&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo # Publish &#xD;&#xA;echo # ----------------------------&#xD;&#xA;dotnet publish &quot;$(ProjectPath)&quot; -c $(ConfigurationName) --no-build &#xD;&#xA;&#xD;&#xA;rem delete NextDesign dll files&#xD;&#xA;del &quot;$(projectDir)$(OutDir)publish\NextDesign.Core.dll&quot; &gt; NUL 2&gt;&amp;1&#xD;&#xA;del &quot;$(projectDir)$(OutDir)publish\NextDesign.Desktop.dll&quot; &gt; NUL 2&gt;&amp;1&#xD;&#xA;&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo # Copy to Extension Fodler&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo Copy files to %25COPY_TARGET_FOLDER%25 ...&#xD;&#xA;&#xD;&#xA;if exist &quot;%25COPY_TARGET_FOLDER%25&quot; rmdir &quot;%25COPY_TARGET_FOLDER%25&quot; /S /Q&#xD;&#xA;xcopy &quot;$(projectDir)$(OutDir)publish&quot; &quot;%25COPY_TARGET_FOLDER%25&quot; /Y /I /E&#xD;&#xA;" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="if exist &quot;$(projectDir)$(OutDir)publish&quot; rmdir &quot;$(projectDir)$(OutDir)publish&quot; /S /Q" />
+  </Target>
+
+</Project>
