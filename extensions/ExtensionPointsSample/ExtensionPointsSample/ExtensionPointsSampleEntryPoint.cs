@@ -46,11 +46,13 @@ namespace ExtensionPointsSample
             buttonGroup.AddSmallButton<HelloCommand>("button2", "Resources/button-cursor-5.png"); // ボタン
 
             // メニュー
-            var menu = group3.AddMenu("Menu", "Resources/button-cursor-6.png");
+            var menu = group3.AddMenu("Menu");
+            menu.ImageLarge = "Resources/button-cursor-6.png";
             menu.AddSmallButton<HelloCommand>("smallbutton", "Resources/button-cursor-7.png"); // ボタン
 
             // スプリットボタン
-            var splitButton = group4.AddSplitButton<HelloCommand>("Split Button", "Resources/button-cursor-8.png");
+            var splitButton = group4.AddSplitButton<HelloCommand>("Split Button");
+            splitButton.ImageLarge = "Resources/button-cursor-8.png";
             var spl_menu = splitButton.AddMenu();
             spl_menu.AddSmallButton<HelloCommand>("smallbutton", "Resources/button-cursor-9.png"); // ボタン
 
