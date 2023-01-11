@@ -5,6 +5,7 @@ using System.Linq;
 using NextDesign.Desktop;
 using NextDesign.Desktop.DocumentGenerator;
 using NextDesign.Desktop.DocumentGenerator.Word;
+using NextDesign.Desktop.DocumentGenerator.Html;
 using NextDesign.Extension;
 
 namespace DocumentGeneratorCustomizationSample
@@ -44,7 +45,7 @@ namespace DocumentGeneratorCustomizationSample
                 option.AutoFitTables = AutoFitBehavior.AutoFitToWindow; // テーブルの列幅の自動調整方法に、ウィンドウサイズに合わせて自動調整を設定
 
                 // コールバック処理の登録
-                config.RegisterAfterContentsGeneration(OnAfterContentsGeneration);
+                config.RegisterBeforeContentWrite(OnBeforeContentWrite);
                 return config;
             });
         }
@@ -64,75 +65,72 @@ namespace DocumentGeneratorCustomizationSample
         #region 内部メソッド
 
         /// <summary>
-        /// ドキュメントの全コンテンツ生成後のコールバック関数です。
+        /// ドキュメントのコンテンツの書き込み開始時のコールバック関数です。
+        /// "(未設定)" の項目を非表示（または "-"）に変更します。
         /// </summary>
-        /// <param name="p">ドキュメントの全コンテンツ生成後パラメータ</param>
-        private void OnAfterContentsGeneration(IAfterContentsGenerationParams p)
+        /// <param name="p">ドキュメントのコンテンツの書き込み開始時パラメータ</param>
+
+        private void OnBeforeContentWrite(IBeforeContentWriteParams p)
         {
-            // 対象コンテンツがページの場合のみ処理する
-            var pageContents = p.DocumentContent.GetAllContents().OfType<IPageContent>();
-            foreach (var pageContent in pageContents)
+            switch (p.DocumentContent.ContentType)
             {
-                // ドキュメントフォームのビューに対してのみ、未設定項目の除去処理を実施
-                var formViews = pageContent.Views.Where(v => v.Editor?.EditorType == "DocumentForm");
-                foreach (var view in formViews)
-                {
-                    RemoveEmptyItems(view.Items);
-                }
+                case DocumentContentTypes.Text:
+                case DocumentContentTypes.RichText:
+                    var valueContent = p.DocumentContent as IValueContent;
+                    if (valueContent != null && String.IsNullOrEmpty(valueContent.Text))
+                    {
+                        p.Skip = true;
+                        //SetEmptyTextContent(valueContent);      // "(未設定)" を "-" に置き換える場合は上記行をコメントアウトしてこちらを使用
+                    }
+                    break;
+
+                case DocumentContentTypes.Table:
+                case DocumentContentTypes.List:
+                    var formControlContent = p.DocumentContent as IFormControlContent;
+                    if (formControlContent != null && formControlContent.ViewItem.Items.Count < 1)
+                    {
+                        p.Skip = true;
+                        //WriteEmptyItemsContent(p.Writer, formControlContent);    // "(未設定)" を "-" に置き換える場合はこの行を有効化
+                    }
+                    break;
+
+                default:
+                    break;
             }
+
+            return;
         }
 
         /// <summary>
-        /// ビュー上の未設定項目を除去します。
+        /// ドキュメントフォーム上の空の文字列型フィールドとリッチテキスト型フィールドに対して "-" を設定する
         /// </summary>
-        /// <param name="items">コンテンツ要素</param>
-        private void RemoveEmptyItems(IList<IViewItemContent> items)
+        /// <param name="content">ドキュメントフォーム上の対象項目</param>
+        public void SetEmptyTextContent(IValueContent content)
         {
-            // 未設定項目を探索して除去する
-            var removeItems = new ObservableCollection<IViewItemContent>();
-            foreach (var item in items)
+            content.Text = (content is IRichTextContent) ? "<html><body><p>-</p></body></html>" : "-";
+        }
+
+        /// <summary>
+        /// ドキュメントフォーム上の空のリストとグリッドに対してタイトルと "-" を出力する
+        /// </summary>
+        /// <param name="writer">ドキュメントのWriter</param>
+        /// <param name="content">ドキュメントフォーム上の対象項目</param>
+        private void WriteEmptyItemsContent(IDocumentWriter writer, IFormControlContent content)
+        {
+            // 出力形式に応じて項目のタイトルと "-" を出力
+            if (writer is IWordWriter)
             {
-                switch (item.Control.ContentType)
-                {
-                    case DocumentContentTypes.Text:
-                    case DocumentContentTypes.RichText:
-                        // テキスト、リッチテキストは、未設定の場合、項目を削除する
-                        var ctl = item.Control as IValueContent;
-                        if (String.IsNullOrEmpty(ctl.Text))
-                        {
-                            removeItems.Add(item);
-                        }
-                        break;
-
-                    case DocumentContentTypes.Table:
-                    case DocumentContentTypes.List:
-                        // グリッド、リストは、子要素がない場合、項目を削除する
-                        if (item.Control.ViewItem.Items.Count == 0)
-                        {
-                            removeItems.Add(item);
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
+                var wordWriter = writer as IWordWriter;
+                wordWriter.SetHeadingStyleByOutlineLevel(content.ViewItem.OutlineLevel);
+                wordWriter.WriteLine(content.Title);
+                wordWriter.SetBodyStyleByOutlineLevel(content.ViewItem.OutlineLevel);
+                wordWriter.WriteLine("-");
             }
-
-            // 上記で走査した未設定項目を削除する
-            foreach (var item in removeItems)
+            else if (writer is IHtmlWriter)
             {
-                items.Remove(item);
-            }
-
-            // グループ化された要素、リスト要素に対しては、再帰的に未設定項目の除去処理を実施する
-            var nestedItems = items.Where(i => 
-                i.Control.ContentType == DocumentContentTypes.Group ||
-                i.Control.ContentType == DocumentContentTypes.List ||
-                i.Control.ContentType == DocumentContentTypes.ListItem
-            );
-            foreach (var item in nestedItems)
-            {
-                RemoveEmptyItems(item.Items);
+                var htmlWriter = writer as IHtmlWriter;
+                htmlWriter.WriteLine($"<p class=\"title\">{content.Title}</p>");
+                htmlWriter.WriteLine("<p>-</p>");
             }
         }
 
