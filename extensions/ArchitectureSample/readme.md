@@ -1,8 +1,15 @@
 
 # アーキテクチャ サンプル
 
-エクステンションの推奨アーキテクチャを説明するサンプルです。
+インターフェースによる実装の隠蔽を説明するサンプルです。  
+エクステンションの推奨アーキテクチャを説明するサンプルですが、サンプルの動作は次の手順で確認できます。
 
-詳しくはNext Design エクステンション開発マニュアルの[インターフェースによる実装の隠蔽](https://docs.nextdesign.app/extension/docs/design-practice/hide-implementation.md)をお読み下さい。
+1. サンプルプロジェクトの「先進運転システムソフト開発」を開きます
+2. モデルナビゲータで「先進運転システムソフト開発/システム要件開発/ユースケース」を選択します
+3. リボン「ArchitectureSample」タブの「作成/ユースケースの作成」を押下します  
+⇒選択中のモデルの下に「ユースケース1」「ユースケース2」「ユースケース2」が追加されます。
+
+
+詳しくはNext Design エクステンション開発マニュアルの[インターフェースによる実装の隠蔽](https://docs.nextdesign.app/extension/docs/design-practice/encapsulation-using-interfaces)をお読み下さい。
 
 
