@@ -1,8 +1,8 @@
 
-# ã‚¢ãƒ¼ã‚­ãƒ†ã‚¯ãƒãƒ£ ã‚µãƒ³ãƒ—ãƒ«
+# ƒA[ƒLƒeƒNƒ`ƒƒ ƒTƒ“ƒvƒ‹
 
-ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³ã®æŽ¨å¥¨ã‚¢ãƒ¼ã‚­ãƒ†ã‚¯ãƒãƒ£ã‚’èª¬æ˜Žã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã§ã™ã€‚
+ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚Ì„§ƒA[ƒLƒeƒNƒ`ƒƒ‚ðà–¾‚·‚éƒTƒ“ƒvƒ‹‚Å‚·B
 
-è©³ã—ãã¯Next Design ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³é–‹ç™ºãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã®[ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã«ã‚ˆã‚‹å®Ÿè£…ã®éš è”½](https://docs.nextdesign.app/extension/docs/design-practice/encapsulation-using-interfaces)ã‚’ãŠèª­ã¿ä¸‹ã•ã„ã€‚
+Ú‚µ‚­‚ÍNext Design ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“ŠJ”­ƒ}ƒjƒ…ƒAƒ‹‚Ì[ƒCƒ“ƒ^[ƒtƒF[ƒX‚É‚æ‚éŽÀ‘•‚Ì‰B•Á](https://docs.nextdesign.app/extension/docs/design-practice/hide-implementation.md)‚ð‚¨“Ç‚Ý‰º‚³‚¢B
 
 
