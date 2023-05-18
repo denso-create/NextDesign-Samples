@@ -49,7 +49,7 @@ namespace ExcelImportExtension.DataReader
                 // ------------------------------------------------------
                 if ((cellValues.Count >= 1) && (! string.IsNullOrWhiteSpace(cellValues[0])))
                 {
-                    var layer = CreateLayerDto();
+                    var layer = ModelDto.CreateLayerDto();
                     layer.Name = cellValues[0];                                                 // A列：名前
                     layer.Responsibility = (cellValues.Count >= 3) ? cellValues[2] : "";        // C列：責務
                     layerList.Add(layer);
@@ -60,7 +60,7 @@ namespace ExcelImportExtension.DataReader
                 // ------------------------------------------------------
                 else if ((cellValues.Count >= 2) && (! string.IsNullOrWhiteSpace(cellValues[1])))
                 {
-                    var component = CreateComponentDto();
+                    var component = ModelDto.CreateComponentDto();
                     component.Name = cellValues[1];				                                // B列：名前
                     component.Responsibility = (cellValues.Count >= 3) ? cellValues[2] : "";    // C列：責務
                     owner?.Add(component);
@@ -142,30 +142,6 @@ namespace ExcelImportExtension.DataReader
             }
 
             return stringValue;
-        }
-
-        /// <summary>
-        /// 「レイヤ」のメタモデルに合わせてデータを作成します。
-        /// </summary>
-        private ModelDto CreateLayerDto()
-        {
-            return new ModelDto()
-            {
-                ClassName = "SoftwareLayer",
-                ChildrenFieldName = "Components"
-            };
-        }
-
-        /// <summary>
-        /// 「コンポーネント」のメタモデルに合わせてデータを作成します。
-        /// </summary>
-        private ModelDto CreateComponentDto()
-        {
-            return new ModelDto()
-            {
-                ClassName = "SoftwareComponent",
-                ChildrenFieldName = "Functions"
-            };
         }
     }
 }
