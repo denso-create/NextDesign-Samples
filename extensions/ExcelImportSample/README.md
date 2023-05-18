@@ -49,12 +49,9 @@ Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクス�
 
 * src
     * ExcelImportExtension.sln ほかプロジェクト一式
-* extensions\ExcelImportExtension.zip
-    * エクステンション実行形式ファイル一式
 * sample-files
-    * ExcelImportProject.iproj
+    * ExcelImportProject.nproj
     * ExcelImportData.xlsx
-
 
 ## プログラムのポイント
 
@@ -62,13 +59,13 @@ Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクス�
 
 * Excel インポートボタンを押下すると、次のメソッドが呼び出されます（エントリーポイントのコマンドハンドラ）。
 
-    > src\ExcelImportExtension\ExcelImportExtension.cs : ExcelImportExtension クラスの Run メソッド(23行目)
+    > src\ExcelImportExtension\ExcelImportExtension.cs : ExcelImportExtension クラスの Run メソッド
 
 ### Excel ファイルの読み込み
 
 * Excel ファイルの読み込み処理は、次のメソッドに実装されています。
 
-    > src\ExcelImportExtension\DataReader\ExcelReader.cs : ExcelReader クラスの Read メソッド(23行目)
+    > src\ExcelImportExtension\DataReader\ExcelReader.cs : ExcelReader クラスの Read メソッド
 
 * Excelファイルの操作にはオープンソースの NPOI を利用しています。
 
@@ -80,7 +77,7 @@ Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクス�
 
 * Next Design への書き込み処理は、次のメソッドに実装されています。
 
-    > src\ExcelImportExtension\ModelBuilder\SoftwareStructureModelBuilder.cs : SoftwareStructureModelBuilder クラスの AddStructuredModel メソッド(19行目)
+    > src\ExcelImportExtension\ModelBuilder\SoftwareStructureModelBuilder.cs : SoftwareStructureModelBuilder クラスの AddStructuredModel メソッド
 
 * Next Design への書き込み処理中の次の箇所で、エクステンション API を利用しています。
 
@@ -96,7 +93,7 @@ Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクス�
 
 * Next Design で開いている書き込み先のモデルは、次の箇所でエクステンション API を利用して特定しています。
 
-    > src\ExcelImportExtension\ExcelImportExtension.cs : ExcelImportExtension クラスの Run メソッド内(30行目)
+    > src\ExcelImportExtension\ExcelImportExtension.cs : ExcelImportExtension クラスの Run メソッド内
 
     ```
     var targetModel = m_Context.App.Window.EditorPage.CurrentModel;
