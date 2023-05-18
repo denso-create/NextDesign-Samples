@@ -98,7 +98,7 @@ namespace ExcelImportExtension.DataReader
         /// <remarks>
         /// https://csharp.programmer-reference.com/npoi-cellvalue-getstring/
         /// </remarks>
-        public string GetStringCellValue(ICell cell)
+        private string GetStringCellValue(ICell cell)
         {
             string stringValue = "";
             if (cell == null)
