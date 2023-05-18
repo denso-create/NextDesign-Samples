@@ -1,9 +1,11 @@
 # Excelインポートエクステンションサンプル
 
+<div style="text-align: right">株式会社デンソークリエイト</div>
+
 ## 概要
 
 * Next Design の導入時、既存資産をいかにして効率よくモデル化できるかが課題になります。
-    この課題に対して Next Design では、エクステンションを開発して既存資産の外部ファイルをインポートすることで、モデルを自動作成できます。
+  この課題に対して Next Design では、エクステンションを開発して既存資産の外部ファイルをインポートすることで、モデルを自動作成できます。
 * 本プログラムでは、特定フォーマットの Excel シートをインポートして、階層構造のモデルを自動作成します。
 
 ## 必ずお読みください
@@ -25,7 +27,7 @@
 
 * Next Design で次のプロジェクトを開きます。
 
-    > sample-files\ExcelImportProject.iproj
+    > sample-files\ExcelImportProject.nproj
 
 * Next Design のモデルナビゲータで、次のモデルを選択します。
 
@@ -69,9 +71,9 @@ Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクス�
 
 * Excelファイルの操作にはオープンソースの NPOI を利用しています。
 
-    > https://github.com/nissl-lab/npoi  
+    > <https://github.com/nissl-lab/npoi>
 
-    > https://www.nuget.org/packages/NPOI/  
+    > <https://www.nuget.org/packages/NPOI/>
 
 ### Next Design への書き込み
 
