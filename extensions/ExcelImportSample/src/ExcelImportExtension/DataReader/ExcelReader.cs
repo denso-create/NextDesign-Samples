@@ -47,22 +47,22 @@ namespace ExcelImportExtension.DataReader
                 // ------------------------------------------------------
                 // A列に値があれば「レイヤ」のデータとして読み込みます。
                 // ------------------------------------------------------
-                if (cellValues[0].Length > 0)
+                if ((cellValues.Count >= 1) && (! string.IsNullOrWhiteSpace(cellValues[0])))
                 {
                     var layer = CreateLayerDto();
-                    layer.Name = cellValues[0];             // A列：名前
-                    layer.Responsibility = cellValues[2];   // C列：責務
+                    layer.Name = cellValues[0];                                                 // A列：名前
+                    layer.Responsibility = (cellValues.Count >= 3) ? cellValues[2] : "";        // C列：責務
                     layerList.Add(layer);
                     owner = layer.Children;
                 }
                 // ------------------------------------------------------
                 // B列に値があれば「コンポーネント」のデータとして読み込みます。
                 // ------------------------------------------------------
-                else if (cellValues[1].Length > 0)
+                else if ((cellValues.Count >= 2) && (! string.IsNullOrWhiteSpace(cellValues[1])))
                 {
                     var component = CreateComponentDto();
-                    component.Name = cellValues[1];				// B列：名前
-                    component.Responsibility = cellValues[2];   // C列：責務
+                    component.Name = cellValues[1];				                                // B列：名前
+                    component.Responsibility = (cellValues.Count >= 3) ? cellValues[2] : "";    // C列：責務
                     owner?.Add(component);
                 }
             } while (rowIndex++ < worksheet.LastRowNum);
@@ -76,11 +76,72 @@ namespace ExcelImportExtension.DataReader
         private IList<string> GetStringCellValues(IRow row)
         {
             var cells = new List<string>();
+            if (row == null)
+            {
+                return cells;
+            }
+
             for (var colIndex = 0; colIndex < row.LastCellNum; colIndex++)
             {
-                cells.Add(row.GetCell(colIndex).StringCellValue);
+                var cell = row.GetCell(colIndex);
+                var stringValue = GetStringCellValue(cell);
+                cells.Add(stringValue);
             }
             return cells;
+        }
+
+        /// <summary>
+        /// セル値を全て文字列として取得する
+        /// </summary>
+        /// <param name="cell">Cellオブジェクト</param>
+        /// <returns>結果文字列</returns>
+        /// <remarks>
+        /// https://csharp.programmer-reference.com/npoi-cellvalue-getstring/
+        /// </remarks>
+        public string GetStringCellValue(ICell cell)
+        {
+            string stringValue = "";
+            if (cell == null)
+            {
+                return stringValue;
+            }
+
+            var cellType = (cell.CellType == CellType.Formula) ? cell.CachedFormulaResultType: cell.CellType;
+            switch (cellType)
+            {
+                case CellType.String:
+                    //文字型
+                    stringValue = cell.StringCellValue;
+                    break;
+                case CellType.Numeric:
+                    if (DateUtil.IsCellDateFormatted(cell))
+                    {
+                        //日付型
+                        stringValue = cell.DateCellValue.ToString("yyyy/MM/dd");
+                    }
+                    else
+                    {
+                        //数値型
+                        stringValue = cell.NumericCellValue.ToString();
+                    }
+                    break;
+                case CellType.Boolean:
+                    //真偽型
+                    stringValue = cell.BooleanCellValue.ToString();
+                    break;
+                case CellType.Blank:
+                    //ブランク
+                    stringValue = "";
+                    break;
+                case CellType.Error:
+                    //エラー
+                    stringValue = cell.ErrorCellValue.ToString();
+                    break;
+                default:
+                    break;
+            }
+
+            return stringValue;
         }
 
         /// <summary>
