@@ -1,0 +1,13 @@
+﻿{
+	"locale" : "ja", 
+	"resourceStrings" : 
+	{
+		"Extension.DisplayNameKey" : "サンプルエクステンション",
+ 		"Extension.DescriptionKey" : "ポート経路探索のサンプルエクステンションです。",
+
+ 		"AdasTab.Label" : "ADAS開発",
+		"AdasTab.RouteGroup.Label" : "経路",
+		"AdasTab.RouteGroup.PortRouteSearch.Label" : "ポート経路探索",
+		"AdasTab.RouteGroup.PortRouteSearch.Description" : "チェックするとポート経路探索を有効とします。"
+	}
+}

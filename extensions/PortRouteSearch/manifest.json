@@ -1,0 +1,72 @@
+{
+    "name" : "ADAS_Sample",
+    "displayName": "%Extension.DisplayNameKey%",
+    "description": "%Extension.DescriptionKey%",
+    "version": "0.0.10",
+    "publisher": "DENSO CREATE INC.",
+
+    "license": "Next Design 使用許諾契約書に準ずる。Copyright (C) 2019 DENSO CREATE INC. All rights reserved.",
+
+    "main": "main.cs",
+
+    "lifecycle" : "project",
+
+    "baseProfile" : "車載システムソフト開発",
+	
+    "extensionPoints": {
+		"events" : 
+		{
+			"models" : 
+			[
+				{
+					"class" : "FuntionFlowInputPortInnerSystem,FuntionFlowOutputPortInnerSystem,ControlLogicInputPort,ControlLogicOutputPort",
+					"onSelectionChanged" : "OnPortSelected"
+				}
+			]
+		},
+
+		"commands" : 
+		[
+			{
+				"id" : "Command.SwitchPortRouteSearch",
+				"title" : "%Command.SwitchPortRouteSearch.Title%",
+				"description" : "%Command.SwitchPortRouteSearch.Description%",
+				"group" : "Command.InfluenceRangeGroup",
+				"execFunc" : "SwitchPortRouteSearch"
+			}
+		],
+
+        "ribbon": {
+			"tabs" : 
+			[
+				{
+					"id" : "AdasTab",
+					"label" : "%AdasTab.Label%",
+					"description" : "",
+					"isVisible" : "",
+					"orderBefore" : "System.View",
+					"groups" : 
+					[
+						{
+							"id" : "AdasTab.RouteGroup",
+							"label" : "%AdasTab.RouteGroup.Label%",
+							"description" : "",
+
+							"controls" : 
+							[
+								{
+									"id" : "AdasTab.RouteGroup.PortRouteSearch",
+									"type" : "checkbox",
+									"label" : "%AdasTab.RouteGroup.PortRouteSearch.Label%",
+									"description" : "%AdasTab.RouteGroup.PortRouteSearch.Description%",
+									"IsChecked" : "PortRouteSearch",
+									"command" : "Command.SwitchPortRouteSearch"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}
