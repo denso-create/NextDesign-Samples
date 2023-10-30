@@ -1,0 +1,13 @@
+﻿{
+  "locale": "en",
+  "resouceStrings": {
+    "Application.Name": "Excel Extension",
+    "Application.Description": "Sample of extension to import/export Excel sheet.",
+    "ExtensionPoints.Ribbon.Tab": "Extensions",
+    "ExtensionPoints.CommandGroup.First": "Data Link",
+    "ExtensionPoints.Command.Import.Label": "Import Excel",
+    "ExtensionPoints.Command.Import.Description": "Import from Excel sheet.",
+    "ExtensionPoints.Command.Export.Label": "Export Excel",
+    "ExtensionPoints.Command.Export.Description": "Export to Excel sheet."
+  }
+}

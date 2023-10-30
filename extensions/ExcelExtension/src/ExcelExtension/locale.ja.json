@@ -1,0 +1,13 @@
+﻿{
+  "locale": "ja",
+  "resouceStrings": {
+    "Application.Name": "Excel Extension",
+    "Application.Description": "Excelとのインポート／エクスポートを行うエクステンションのサンプルです。",
+    "ExtensionPoints.Ribbon.Tab": "エクステンション",
+    "ExtensionPoints.CommandGroup.First": "データ連携",
+    "ExtensionPoints.Command.Import.Label": "Excel インポート",
+    "ExtensionPoints.Command.Import.Description": "Excel シートからインポートします。",
+    "ExtensionPoints.Command.Export.Label": "Excel エクスポート",
+    "ExtensionPoints.Command.Export.Description": "Excel シートへエクスポートします。"
+  }
+}

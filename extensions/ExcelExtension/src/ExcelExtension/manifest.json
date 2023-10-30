@@ -1,0 +1,57 @@
+﻿{
+  "name": "ExcelExtension",
+  "displayName": "%Application.Name%",
+  "description": "%Application.Description%",
+  "version": "1.1.0",
+  "publisher": "DENSO CREATE INC.",
+
+  "main": "ExcelExtension.dll",
+  "lifecycle": "project",
+  "baseprofile": "車載システムソフト開発",
+
+  "extensionPoints": {
+    "commands": [
+      {
+        "id": "ExcelExtension.Import",
+        "execFunc": "Import"
+      },
+      {
+        "id": "ExcelExtension.Export",
+        "execFunc": "Export"
+      }
+    ],
+
+    "ribbon": {
+      "tabs": [
+        {
+          "id": "ExcelImportExtensions.MainTab",
+          "label": "%ExtensionPoints.Ribbon.Tab%",
+          "orderAfter": "System.Help",
+          "groups": [
+            {
+              "id": "ExcelExtension.FirstGroup",
+              "label": "%ExtensionPoints.CommandGroup.First%",
+
+              "controls": [
+                {
+                  "id": "ExcelExtension.Button.Import",
+                  "type": "Button",
+                  "label": "%ExtensionPoints.Command.Import.Label%",
+                  "imageLarge": "resources/images/import.png",
+                  "command": "ExcelExtension.Import"
+                },
+                {
+                  "id": "ExcelExtension.Button.Export",
+                  "type": "Button",
+                  "label": "%ExtensionPoints.Command.Export.Label%",
+                  "imageLarge": "resources/images/export.png",
+                  "command": "ExcelExtension.Export"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
