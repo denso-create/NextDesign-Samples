@@ -1,0 +1,49 @@
+{
+	"$schema": "manifest.schema.json",
+
+	"name": "GenerateUiTestCases",
+	"main": "GenerateUiTestCases.dll",
+	
+	"lifecycle": "project",
+
+	"extensionPoints": {
+
+		"commands": [
+			{
+				"id": "GenerateUiTestCases.Generate",
+				"execFunc": "GenerateUiTestCases"
+			}
+		],
+
+		"events": {
+		},
+
+		"ribbon": {
+			"tabs": [
+				{
+					"id": "GenerateUiTestCases.Tab",
+					"label": "Extension",
+
+					"groups": [
+						{
+							"id": "GenerateUiTestCases.Group1",
+							"label": "Group1",
+
+							"controls": [
+								{
+									"id": "GenerateUiTestCases.GenerateButton",
+									"type": "Button",
+									"label": "Generate",
+									"command": "GenerateUiTestCases.Generate"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+
+
+	}
+
+}
