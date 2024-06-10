@@ -117,7 +117,7 @@ namespace ExcelImportExtension.DataReader
                     if (DateUtil.IsCellDateFormatted(cell))
                     {
                         //日付型
-                        stringValue = cell.DateCellValue?.ToString("yyyy/MM/dd");
+                        stringValue = cell.DateCellValue.ToString("yyyy/MM/dd");
                     }
                     else
                     {
