@@ -343,9 +343,7 @@
                   "anyOf": [
                     { "$ref": "#/definitions/ui/button" },
                     { "$ref": "#/definitions/ui/splitbutton" },
-                    { "$ref": "#/definitions/ui/checkbox" },
-                    { "$ref": "#/definitions/ui/buttongroup" },
-                    { "$ref": "#/definitions/ui/menu" }
+                    { "$ref": "#/definitions/ui/checkbox" }
                   ]
                 },
                 "maxItems": 3
