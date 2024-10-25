@@ -19,11 +19,6 @@
   </Target>
 
   <ItemGroup>
-    <None Remove="NextDesign.Core.dll" />
-    <None Remove="NextDesign.Desktop.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NextDesign.Desktop" Version="*" />
   </ItemGroup>
 
