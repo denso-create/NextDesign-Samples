@@ -22,8 +22,8 @@
 
     なお、ビルドするためには、事前に次のパッケージをインストールしておく必要があります。
 
-    > .NET Core 3.1 SDK  
-    > <https://dotnet.microsoft.com/en-us/download/dotnet/3.1>
+    > .NET 6.0 SDK  
+    > <https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0>
 
 * Next Design で次のプロジェクトを開きます。
 
@@ -47,7 +47,7 @@
 
 ## 構成ファイル
 
-Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクステンション開発プロジェクト一式が含まれています。
+Visual Studio 2022 以降でビルド・デバッグ実行が可能なエクステンション開発プロジェクト一式が含まれています。
 
 * src
     * ExcelImportExtension.sln ほかプロジェクト一式
@@ -90,8 +90,8 @@ Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクス�
     addedModel.SetField("Responsibility", dto.Responsibility);
     ```
 
-    * API: IModel.AddNewModel メソッド
-    * API: IModel.SetField メソッド
+    * [API: IModel.AddNewModel メソッド](https://docs.nextdesign.app/extension/api/NextDesign.Core/IModel/methods/AddNewModel)
+    * [API: IModel.SetField メソッド](https://docs.nextdesign.app/extension/api/NextDesign.Core/IModel/methods/SetField)
 
 * Next Design で開いている書き込み先のモデルは、次の箇所でエクステンション API を利用して特定しています。
 
@@ -101,7 +101,7 @@ Visual Studio 2019 以降でビルド・デバッグ実行が可能なエクス�
     var targetModel = m_Context.App.Window.EditorPage.CurrentModel;
     ```
 
-    * API: IEditorPage.CurrentModel プロパティ
+    * [API: IEditorPage.CurrentModel プロパティ](https://docs.nextdesign.app/extension/api/NextDesign.Desktop/IEditorPage/properties/CurrentModel)
 
 ----
 Copyright (C) 2019 DENSO CREATE INC. All rights reserved.
