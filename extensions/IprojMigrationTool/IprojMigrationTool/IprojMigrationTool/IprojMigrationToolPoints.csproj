@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PackageId>IprojMigrationTool</PackageId>
+    <Version>1.0.3</Version>
+    <PackageProjectUrl>https://www.nextdesign.app/support/releases/iproj-migration/</PackageProjectUrl>
+    <Authors>DENSO CREATE INC.</Authors>
+    <Company>DENSO CREATE INC.</Company>
+    <Product>IprojMigrationTool</Product>
+    <Description>{"ja":"Next Design プロジェクトをDB形式からJSON形式に移行させます。",
+"en":"This tool migrates Next Design projects from a DB format to a JSON format."}</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyName>IprojMigrationTool</AssemblyName>
+    <RootNamespace>IprojMigrationTool</RootNamespace>
+    <Copyright>Copyright(C) 2025 DENSO CREATE INC.  All Rights Reserved.</Copyright>
+    <RepositoryUrl></RepositoryUrl>
+    <Title>IprojMigrationTool</Title>
+    <PackageTags>minVer:4,maxVer:4</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Events\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <None Remove="Events\**" />
+    <Page Remove="Events\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NextDesign.Desktop" Version="4.0.4.50616" />
+    <PackageReference Include="NextDesign.Desktop.ExtensionPoints" Version="1.2.2.41030" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\auto_renew-32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\playlist_add_check-32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Messages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set local&#xD;&#xA;set COPY_TARGET_FOLDER=%25LOCALAPPDATA%25\DENSO CREATE\Next Design\extensions\$(TargetName)&#xD;&#xA;&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo # Publish &#xD;&#xA;echo # ----------------------------&#xD;&#xA;dotnet publish &quot;$(ProjectPath)&quot; -c $(ConfigurationName) --no-build &#xD;&#xA;&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo # Copy to Extension Fodler&#xD;&#xA;echo # ----------------------------&#xD;&#xA;echo Copy files to %25COPY_TARGET_FOLDER%25 ...&#xD;&#xA;&#xD;&#xA;if exist &quot;%25COPY_TARGET_FOLDER%25&quot; rmdir &quot;%25COPY_TARGET_FOLDER%25&quot; /S /Q&#xD;&#xA;xcopy &quot;$(projectDir)$(OutDir)publish&quot; &quot;%25LOCALAPPDATA%25\DENSO CREATE\Next Design\extensions\$(TargetName)&quot; /Y /I /E&#xD;&#xA;&#xD;&#xA;rem delete NextDesign dll files&#xD;&#xA;if exist &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Core.dll&quot; del &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Core.dll&quot;&#xD;&#xA;if exist &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Desktop.dll&quot; del &quot;%25COPY_TARGET_FOLDER%25\NextDesign.Desktop.dll&quot;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="if exist &quot;$(projectDir)$(OutDir)publish&quot; rmdir &quot;$(projectDir)$(OutDir)publish&quot; /S /Q" />
+  </Target>
+
+</Project>
