@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NotImplementedMessage" xml:space="preserve">
+    <value>この機能はまだ実装されていません。</value>
+  </data>
+  <data name="IprojFileNotOpened" xml:space="preserve">
+    <value>.iproj ファイルを開いてから実行してください。</value>
+  </data>
+  <data name="NotIprojExtension" xml:space="preserve">
+    <value>対象プロジェクトは .iproj ファイルではありません。処理を終了します。</value>
+  </data>
+  <data name="UnsavedProjectChanges" xml:space="preserve">
+    <value>プロジェクトに保存されていない変更があります。実行前に保存してください。</value>
+  </data>
+  <data name="NprojSaveFailed" xml:space="preserve">
+    <value>.nproj ファイルの保存に失敗しました。</value>
+  </data>
+  <data name="IprojMigrationStartMessage" xml:space="preserve">
+    <value>iprojファイルの移行を開始します。 : {0}</value>
+  </data>
+  <data name="IprojMigrationCompletedMessage" xml:space="preserve">
+    <value>iprojファイルの移行を完了しました。</value>
+  </data>
+  <data name="ProfileReferenceInfo" xml:space="preserve">
+    <value>[Info] 参照しているプロファイルがあります。.iprof 形式の場合は .nprof 形式にアップデートしてください。 : {0}</value>
+  </data>
+  <data name="ExternalModelFileInfo" xml:space="preserve">
+    <value>[Info] 参照登録されているモデルファイルがあります。処理完了後に .nmdl ファイルに差し替えてください。 : {0}</value>
+  </data>
+  <data name="ProfileFileSplitInfo" xml:space="preserve">
+    <value>[Info] プロファイルがファイル分割されていました。処理完了後にプロファイルをファイル分割してください。 : {0}</value>
+  </data>
+  <data name="SourceFileDeleteFailed" xml:space="preserve">
+    <value>元ファイルの削除に失敗しました: {0}</value>
+  </data>
+  <data name="PartialLoadMigrationEnterpriseOnly" xml:space="preserve">
+    <value>部分ロード設定の移行は Enterprise エディション用です。</value>
+  </data>
+  <data name="PartialLoadMigrationFailed" xml:space="preserve">
+    <value>部分ロード設定の移行に失敗しました。</value>
+  </data>
+  <data name="PartialLoadMigrationCompleted" xml:space="preserve">
+    <value>部分ロード設定の移行を完了しました。</value>
+  </data>
+  <data name="PartialLoadMigrationStartMessage" xml:space="preserve">
+    <value>部分ロード設定の移行を開始します。 : {0}</value>
+  </data>
+  <data name="PartialLoadNotFound" xml:space="preserve">
+    <value>部分ロード設定が見つかりませんでした。 : {0}</value>
+  </data>
+  <data name="LoadingModelFile" xml:space="preserve">
+    <value>モデルファイルをロードします。 : {0}</value>
+  </data>
+  <data name="ExtensionRibbonTab" xml:space="preserve">
+    <value>エクステンション</value>
+  </data>
+  <data name="ExtensionRibbonGroup" xml:space="preserve">
+    <value>iproj移行支援</value>
+  </data>
+  <data name="ExtensionIProjMigrationCommand" xml:space="preserve">
+    <value>iprojファイルの移行</value>
+  </data>
+  <data name="ExtensionPartialLoadMigrationCommand" xml:space="preserve">
+    <value>部分ロード設定の移行</value>
+  </data>
+  <data name="OutputGitSvnMvCommandsCompleted" xml:space="preserve">
+    <value>[Info] 構成管理ファイルの拡張子変更コマンド一覧を出力しました。これを参考に対処してください。  : {0}</value>
+  </data>
+  <data name="OutputGitSvnMvCommandsFailed" xml:space="preserve">
+    <value>構成管理ファイルの拡張子変更コマンド一覧の出力に失敗しました。: {0}</value>
+  </data>
+  <data name="SavingNproj" xml:space="preserve">
+    <value>プロジェクトをJSON形式で保存します。 : {0}</value>
+  </data>
+  <data name="DividingModelFile" xml:space="preserve">
+    <value>モデルファイルを分割します。 : {0}</value>
+  </data>
+  <data name="PartialLoadMigrationOpenProject" xml:space="preserve">
+    <value>部分ロード設定を移行しました。対象プロジェクトを開きます。 : {0}</value>
+  </data>
+  <data name="FileDialogProjectFilterDescription" xml:space="preserve">
+    <value>すべてのプロジェクトファイル</value>
+  </data>
+  <data name="FileDialogIprojFilterDescription" xml:space="preserve">
+    <value>DB形式プロジェクトファイル</value>
+  </data>
+  <data name="ConfirmBackupProjectCompleted" xml:space="preserve">
+    <value>プロジェクト一式をバックアップ済みですか。
+未実施の場合はキャンセルしてバックアップしてください。</value>
+  </data>
+  <data name="FileDialogNprojFilterDescription" xml:space="preserve">
+    <value>JSON形式プロジェクトファイル</value>
+  </data>
+  <data name="NotNprojExtension" xml:space="preserve">
+    <value>対象プロジェクトは .nproj ファイルではありません。処理を終了します。</value>
+  </data>
+  <data name="TargetFileNotExist1" xml:space="preserve">
+    <value>対象ファイルが存在しません。プロジェクトを閉じてファイルを修復してください。 : {0}</value>
+  </data>
+  <data name="TargetFileIsReadonly1" xml:space="preserve">
+    <value>対象ファイルが読み取り専用です。読み取り専用を解除してください。 : {0}</value>
+  </data>
+  <data name="ErrorCheckProjectFilesStatus" xml:space="preserve">
+    <value>移行処理できないファイルがあります。出力メッセージを確認してください。</value>
+  </data>
+  <data name="ProfileNameDifferenceInfo2" xml:space="preserve">
+    <value>[Info] プロファイル名が .iprof ファイル名と異なっています。プロファイル分割の作業手順を確認ください。プロファイル名 : "{0}", iprof ファイル名 : "{1}"</value>
+  </data>
+</root>

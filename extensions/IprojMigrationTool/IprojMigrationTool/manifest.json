@@ -1,0 +1,6 @@
+{
+  "$schema": "manifest.schema.json",
+  "name": "IprojMigrationTool",
+  "main": "IprojMigrationTool.dll",
+  "lifecycle": "application"
+}
