@@ -1,0 +1,6 @@
+{
+  "$schema": "manifest.schema.json",
+  "name": "RestrictNamesUnique",
+  "main": "RestrictNamesUnique.dll",
+  "lifecycle": "project"
+}
