@@ -14,6 +14,11 @@ namespace RestrictNamesUnique
         internal const string c_TagName_IsUniqueNameEnforced = "IsUniqueNameEnforced";
 
         /// <summary>
+        /// この拡張で使用するエラーカテゴリ名（共通定義）
+        /// </summary>
+        internal const string c_ErrorCategory_RestrictNamesUnique = "Error.RestrictNamesUnique";
+
+        /// <summary>
         /// モデル名が重複しているかどうかを判定します。
         /// 対象外（親なし、タグなし、デフォルト名など）の場合は false を返します。
         /// </summary>

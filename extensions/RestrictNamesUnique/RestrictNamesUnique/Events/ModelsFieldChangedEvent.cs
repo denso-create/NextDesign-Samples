@@ -28,6 +28,12 @@ namespace RestrictNamesUnique.Events
                 // 変更をキャンセル
                 p.Cancel();
             }
+            else
+            {
+                // 以前のエラーをクリア
+
+                App.Errors.RemoveErrors(App.Errors.FindErrorOfModelByCategory(model, NameUniquenessRules.c_ErrorCategory_RestrictNamesUnique));
+            }
         }
     }
 }

@@ -20,15 +20,15 @@ namespace RestrictNamesUnique.Events
             // onValidate は全モデルに対して発火するため、
             // ここでは対象モデル自身のみを検証します。
             var model = p.Model;
-            var app = c.App;
 
             // 対象モデルに対する以前のエラーをクリアします。
-            app.Errors.ClearErrorsAt(model);
+            App.Errors.RemoveErrors(App.Errors.FindErrorOfModelByCategory(model, NameUniquenessRules.c_ErrorCategory_RestrictNamesUnique));
 
             if (NameUniquenessRules.HasDuplicateName(model, out var owner, out var ownerField))
             {
                 var message = NameUniquenessRules.CreateDuplicateNameMessage(model, ownerField);
-                model.AddError("Name", "Error", "RestrictNamesUnique", message);
+                var error = model.AddError("Name", "Error", "RestrictNamesUnique", message);
+                error.Category = NameUniquenessRules.c_ErrorCategory_RestrictNamesUnique;
             }
         }
     }
