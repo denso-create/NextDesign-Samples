@@ -17,7 +17,7 @@ namespace RestrictNamesUnique.Events
         /// </summary>
         protected override void OnHandle(IEventContext c, ModelOnValidateEventParams p)
         {
-            // onValidate は全モデルに対して発火するため、
+            // onValidate はモデルごとに発火するため、
             // ここでは対象モデル自身のみを検証します。
             var model = p.Model;
 
