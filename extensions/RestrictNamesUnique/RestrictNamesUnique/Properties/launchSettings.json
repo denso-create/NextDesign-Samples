@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "RestrictNamesUniquePoints": {
+      "commandName": "Project"
+    },
+    "NextDesign.exe": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\DENSO CREATE\\Next Design\\NextDesign.exe"
+    }
+  }
+}
