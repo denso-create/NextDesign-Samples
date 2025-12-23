@@ -13,19 +13,17 @@ namespace RestrictNamesUnique
     public class RestrictNamesUniqueEntryPoint : ExtensionBase
     {
         /// <summary>
-        /// 重複チェックを有効にするためのタグ名（共通定義）
-        /// </summary>
-        /// メタモデルで対象フィールドのタグに設定することで、重複チェックを有効にします。
-        internal const string c_TagName_IsUniqueNameEnforced = "IsUniqueNameEnforced";
-
-        /// <summary>
         /// アクティベート時の処理です。
         /// </summary>
         protected override void OnActivate()
         {
-            // イベント登録：OnFieldChanged イベント
-            ExtensionPoints.Events.AddModelEvent().RegisterOnFieldChanged<ModelFieldChanged>();
+            // モデル編集時の即時チェック（OnFieldChanged）
+            ExtensionPoints.Events.AddModelEvent().RegisterOnFieldChanged<ModelsFieldChangedEvent>();
 
+            // 検証実行時のチェック（OnValidate）
+            ExtensionPoints.Events.AddModelEvent().RegisterOnValidate<ModelsValidateEvent>();
+
+            // 拡張機能のアクティベート確認メッセージの出力
             Context.App.Output.WriteLine("system", "RestrictNamesUnique エクステンションがアクティベートされました。");
         }
     }
