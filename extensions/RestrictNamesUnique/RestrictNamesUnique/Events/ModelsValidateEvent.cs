@@ -24,9 +24,9 @@ namespace RestrictNamesUnique.Events
             // 対象モデルに対する以前のエラーをクリアします。
             App.Errors.RemoveErrors(App.Errors.FindErrorOfModelByCategory(model, NameUniquenessRules.c_ErrorCategory_RestrictNamesUnique));
 
-            if (NameUniquenessRules.HasDuplicateName(model, out var owner, out var ownerField))
+            if (NameUniquenessRules.ValidateModel(model, out var owner, out var ownerField))
             {
-                var message = NameUniquenessRules.CreateDuplicateNameMessage(model, ownerField);
+                var message = NameUniquenessRules.CreateErrorMessage(model, ownerField);
                 var error = model.AddError("Name", "Error", "RestrictNamesUnique", message);
                 error.Category = NameUniquenessRules.c_ErrorCategory_RestrictNamesUnique;
             }

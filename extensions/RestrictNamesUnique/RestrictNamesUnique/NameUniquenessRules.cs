@@ -19,10 +19,10 @@ namespace RestrictNamesUnique
         internal const string c_ErrorCategory_RestrictNamesUnique = "Error.RestrictNamesUnique";
 
         /// <summary>
-        /// モデル名が重複しているかどうかを判定します。
+        /// モデルがこのルールに違反しているかどうかを判定します。
         /// 対象外（親なし、タグなし、デフォルト名など）の場合は false を返します。
         /// </summary>
-        internal static bool HasDuplicateName(IModel model, out IModel owner, out IField ownerField)
+        internal static bool ValidateModel(IModel model, out IModel owner, out IField ownerField)
         {
             owner = null;
             ownerField = null;
@@ -36,9 +36,17 @@ namespace RestrictNamesUnique
         }
 
         /// <summary>
+        /// ルール違反時に表示／登録するエラーメッセージを生成します。
+        /// </summary>
+        internal static string CreateErrorMessage(IModel model, IField ownerField)
+        {
+            return $"同じ名前のモデル '{model.Name}' がフィールド '{ownerField.DisplayName}' に既に存在します。";
+        }
+
+        /// <summary>
         /// チェック対象となるコンテキストを取得します。
         /// </summary>
-        internal static bool TryGetValidationContext(IModel model, out IModel owner, out IField ownerField)
+        private static bool TryGetValidationContext(IModel model, out IModel owner, out IField ownerField)
         {
             owner = model.Owner;
             ownerField = null;
@@ -68,17 +76,9 @@ namespace RestrictNamesUnique
         }
 
         /// <summary>
-        /// 名前重複時に表示／登録するエラーメッセージを生成します。
-        /// </summary>
-        internal static string CreateDuplicateNameMessage(IModel model, IField ownerField)
-        {
-            return $"同じ名前のモデル '{model.Name}' がフィールド '{ownerField.DisplayName}' に既に存在します。";
-        }
-
-        /// <summary>
         /// 同一フィールドに同じ名前の兄弟モデルが存在するかどうかを判定します。
         /// </summary>
-        internal static bool HasDuplicateName(IModel model, IModel owner, IField ownerField)
+        private static bool HasDuplicateName(IModel model, IModel owner, IField ownerField)
         {
             var children = owner.GetFieldValues(ownerField.Name);
             if (children == null)

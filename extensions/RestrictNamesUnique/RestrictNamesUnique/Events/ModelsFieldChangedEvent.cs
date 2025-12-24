@@ -18,11 +18,11 @@ namespace RestrictNamesUnique.Events
         {
             var model = p.Model;
             
-            // 共通ルールで重複チェック（対象外の場合は false を返す）
-            if (NameUniquenessRules.HasDuplicateName(model, out var owner, out var ownerField))
+            // 共通ルールでチェック（対象外の場合は false を返す）
+            if (NameUniquenessRules.ValidateModel(model, out var owner, out var ownerField))
             {
                 // エラーメッセージを表示
-                var message = NameUniquenessRules.CreateDuplicateNameMessage(model, ownerField);
+                var message = NameUniquenessRules.CreateErrorMessage(model, ownerField);
                 App.Window.UI.ShowMessageBox(message, "エラー");
 
                 // 変更をキャンセル

@@ -1,9 +1,9 @@
 using System;
 using System.Windows;
-using RestrictNamesUnique.Events;
 using NextDesign.Desktop;
 using NextDesign.Desktop.ExtensionPoints;
 using NextDesign.Extension;
+using RestrictNamesUnique.Events;
 
 namespace RestrictNamesUnique
 {
