@@ -1,0 +1,136 @@
+﻿{
+    "name": "NextDesign.EmbeddedSoftwareDevBase.en.csharp",
+    "displayName": "Embedded software development support functions",
+    "description": "It provides expanded functionality for profiles that can be used in all embedded software development, condensing design methods cultivated in the field of automotive software development.",
+    "version": "1.0.2",
+    "publisher": "DENSO CREATE INC.",
+    "license": "Subject to the Next Design License Agreement. Copyright (C) 2026 DENSO CREATE INC. All rights reserved.",
+
+    "main": "main.cs", // Specify a C# script as the entry point.
+    "lifecycle": "project", // The extension is enabled when a project is open.
+    "baseProfile": "EmbeddedSoftwareDevelopment_en", // The extension is enabled when a project with the "EmbeddedSoftwareDevelopment_en" profile is open.
+
+    "extensionPoints": {
+        "ribbon": {
+            "tabs": [
+                // "Design Support" tab
+                {
+                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport",
+                    "label": "Design Support",
+                    "orderAfter": "System.Traceability", // Place it behind the "Traceability" tab.
+                    "groups": [
+                        // "Batch Model Creation" group
+                        {
+                            "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.CreateModels",
+                            "label": "Batch Model Creation",
+                            "controls": [
+                                // "Software Requirements" button
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.CreateModels.DeriveSoftwareRequirements",
+                                    "label": "Software Requirements",
+                                    "description": "This creates a structure in the currently selected Software Requirement Analysis or Software Requirement Group in the sub-editor that is similar to the System Requirement Group or System Requirement selected in the main editor.",
+                                    "imageLarge": "images/DeriveSoftwareRequirements32.png",
+                                    "command": "Command.DeriveSoftwareRequirements.en.csharp" // Specify the command-id defined in the command described later.
+                                },
+                                // "Test Results" button
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.CreateModels.DeriveTestResults",
+                                    "label": "Test Results",
+                                    "description": "This creates a structure in the Test Result Group selected in the sub-editor that is similar to the Test Case Group selected in the main editor.",
+                                    "imageLarge": "images/DeriveTestResults32.png",
+                                    "command": "Command.DeriveTestResults.en.csharp"
+                                }
+                            ]
+                        },
+                        // "Field Update" group
+                        {
+                            "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.UpdateField",
+                            "label": "Field Update",
+                            "controls": [
+                                // "Update ID" button
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.UpdateField.UpdateId",
+                                    "label": "Update ID",
+                                    "description": "Updates the ID field values of the selected model and its descendant models so that they are unique.",
+                                    "imageLarge": "images/UpdateId32.png",
+                                    "command": "Command.UpdateId.en.csharp"
+                                },
+                                // "Aggregate Test Results" button
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.UpdateField.CountTestResults",
+                                    "label": "Aggregate Test Results", // Labels can be separated by spaces.
+                                    "description": "This updates the General Information for the selected model and all models under it.",
+                                    "imageLarge": "images/CountTestResults32.png",
+                                    "command": "Command.CountTestResults.en.csharp"
+                                }
+                            ]
+                        },
+                        // "Impact Analysis" group
+                        {
+                            "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.AnalyzeImpact",
+                            "label": "Impact Analysis",
+                            "controls": [
+                                // "Extract affected areas of the interface" button
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.AnalyzeImpact.SearchImpactedComponentsAndInterfaces",
+                                    "label": "Find IF Impact Areas",
+                                    "description": "This function traces the model affected by the selected software component or interface and registers it in the search results.\nIf selected in the diagram, it highlights the connectors that form the path of the affected areas.",
+                                    "imageLarge": "images/SearchImpactedComponentsAndInterfaces32.png",
+                                    "command": "Command.SearchImpactedComponentsAndInterfaces.en.csharp"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        // By defining commands and associating them with command handlers, you can call custom functions from extension points on the ribbon.
+        "commands": [
+            // Command to "Derive Software Requirement Models"
+            {
+                "id": "Command.DeriveSoftwareRequirements.en.csharp", // Specify the command handler defined in the entry point (main.cs).
+                "execFunc": "DeriveSoftwareRequirements",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor" // The button becomes active when a model is selected in the editor.
+                }
+            },
+            // Command to "Derive Test Result Models"
+            {
+                "id": "Command.DeriveTestResults.en.csharp",
+                "execFunc": "DeriveTestResults",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            },
+            // Command to "Update ID"
+            {
+                "id": "Command.UpdateId.en.csharp",
+                "execFunc": "UpdateId",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            },
+            // Command to "Aggregate Test Results"
+            {
+                "id": "Command.CountTestResults.en.csharp",
+                "execFunc": "CountTestResults",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            },
+            // Command to "Extract affected areas of the Interface"
+            {
+                "id": "Command.SearchImpactedComponentsAndInterfaces.en.csharp",
+                "execFunc": "SearchImpactedComponentsAndInterfaces",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            }
+        ]
+    }
+}
