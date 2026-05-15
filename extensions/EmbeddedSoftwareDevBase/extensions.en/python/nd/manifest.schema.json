@@ -1,0 +1,212 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Next Design Extension Manifest",
+  "description": "Next Design エクステンションのマニフェストファイルスキーマ",
+  "type": "object",
+  "required": ["name", "main"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "スキーマファイルへの参照"
+    },
+    "name": {
+      "type": "string",
+      "description": "エクステンションの名前",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "main": {
+      "type": "string",
+      "description": "エントリーポイントとなるスクリプトファイル"
+    },
+    "lifecycle": {
+      "type": "string",
+      "enum": ["project", "application"],
+      "default": "project",
+      "description": "エクステンションのライフサイクル"
+    },
+    "baseprofile": {
+      "type": "string",
+      "description": "対象となるベースプロファイル（*で全て）"
+    },
+    "extensionPoints": {
+      "type": "object",
+      "description": "拡張ポイントの定義",
+      "properties": {
+        "ribbon": {
+          "$ref": "#/definitions/ribbon"
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/command"
+          }
+        },
+        "events": {
+          "$ref": "#/definitions/events"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ribbon": {
+      "type": "object",
+      "properties": {
+        "tabs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tab"
+          }
+        }
+      }
+    },
+    "tab": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "タブのID"
+        },
+        "label": {
+          "type": "string",
+          "description": "タブの表示名"
+        },
+        "orderBefore": {
+          "type": "string",
+          "description": "このタブを配置する前のタブID"
+        },
+        "orderAfter": {
+          "type": "string",
+          "description": "このタブを配置する後のタブID"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/group"
+          }
+        }
+      }
+    },
+    "group": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "グループのID"
+        },
+        "label": {
+          "type": "string",
+          "description": "グループの表示名"
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/control"
+          }
+        }
+      }
+    },
+    "control": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "コントロールのID"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["Button", "ToggleButton", "ComboBox", "Menu"],
+          "description": "コントロールの種類"
+        },
+        "label": {
+          "type": "string",
+          "description": "コントロールの表示名"
+        },
+        "command": {
+          "type": "string",
+          "description": "実行するコマンドのID"
+        },
+        "largeImage": {
+          "type": "string",
+          "description": "大きいアイコン画像のパス"
+        },
+        "smallImage": {
+          "type": "string",
+          "description": "小さいアイコン画像のパス"
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "required": ["id", "execFunc"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "コマンドのID"
+        },
+        "execFunc": {
+          "type": "string",
+          "description": "実行する関数名"
+        },
+        "canExecFunc": {
+          "type": "string",
+          "description": "実行可否を判定する関数名"
+        }
+      }
+    },
+    "events": {
+      "type": "object",
+      "properties": {
+        "models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/modelEvent"
+          }
+        },
+        "project": {
+          "$ref": "#/definitions/projectEvent"
+        }
+      }
+    },
+    "modelEvent": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "type": "string",
+          "description": "対象クラス名（*で全て）"
+        },
+        "onFieldChanged": {
+          "type": "string",
+          "description": "フィールド変更時のハンドラ関数名"
+        },
+        "onCreated": {
+          "type": "string",
+          "description": "モデル作成時のハンドラ関数名"
+        },
+        "onDeleting": {
+          "type": "string",
+          "description": "モデル削除前のハンドラ関数名"
+        }
+      }
+    },
+    "projectEvent": {
+      "type": "object",
+      "properties": {
+        "onOpened": {
+          "type": "string",
+          "description": "プロジェクトを開いた時のハンドラ関数名"
+        },
+        "onClosing": {
+          "type": "string",
+          "description": "プロジェクトを閉じる前のハンドラ関数名"
+        },
+        "onSaved": {
+          "type": "string",
+          "description": "プロジェクト保存時のハンドラ関数名"
+        }
+      }
+    }
+  }
+}

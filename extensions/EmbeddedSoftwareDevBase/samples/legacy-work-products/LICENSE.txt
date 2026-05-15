@@ -1,0 +1,4 @@
+これらのサンプルは Next Design をご利用のお客様が対象製品を有効に活用頂く上で参考にしていただくことを想定したものであり、一切の保証は行いません。
+これらは Next Design の使用許諾におけるサンプル扱いとなっています。
+詳しくは次の Next Design 使用許諾契約書 をご確認ください。
+https://www.nextdesign.app/agreements/license-agreement.html
