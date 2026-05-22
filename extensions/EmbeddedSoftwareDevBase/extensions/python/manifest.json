@@ -1,0 +1,136 @@
+﻿{
+    "name": "NextDesign.EmbeddedSoftwareDevBase.ja.python",
+    "displayName": "組込みソフト開発支援機能",
+    "description": "車載ソフト開発現場で培われた設計手法を凝縮した、組込みソフト開発全般で使えるプロファイルに対する拡張機能を提供します。",
+    "version": "1.0.2",
+    "publisher": "DENSO CREATE INC.",
+    "license": "Next Design 使用許諾契約書に準ずる。Copyright (C) 2026 DENSO CREATE INC. All rights reserved.",
+
+    "main": "main.py", // エントリーポイントとしてPython スクリプトを指定します。
+    "lifecycle": "project", // プロジェクトが開いている場合にエクステンションが有効になります。
+    "baseProfile": "EmbeddedSoftwareDevelopment", // 「組込みソフト開発」プロファイルのプロジェクトが開いている場合にエクステンションが有効になります。
+
+    "extensionPoints": {
+        "ribbon": {
+            "tabs": [
+                // 「設計支援」タブ
+                {
+                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport",
+                    "label": "設計支援",
+                    "orderAfter": "System.Traceability", // 「トレーサビリティ」タブの後ろに配置します。
+                    "groups": [
+                        // 「モデル一括作成」グループ
+                        {
+                            "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.CreateModels",
+                            "label": "モデル一括作成",
+                            "controls": [
+                                // 「ソフトウェア要求」ボタン
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.CreateModels.DeriveSoftwareRequirements",
+                                    "label": "ソフトウェア要求",
+                                    "description": "メインエディタで選択中のシステム要求グループまたはシステム要求と同様の構造を、サブエディタで選択中のソフトウェア要求分析またはソフトウェア要求グループに作成します。",
+                                    "imageLarge": "images/DeriveSoftwareRequirements32.png",
+                                    "command": "Command.DeriveSoftwareRequirements.ja.python" // 後述のコマンドに定義されるコマンドの id を指定します。
+                                },
+                                // 「テスト結果」ボタン
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.CreateModels.DeriveTestResults",
+                                    "label": "テスト結果",
+                                    "description": "メインエディタで選択中のテストケースグループと同様の構造を、サブエディタで選択中のテスト結果グループに作成します。",
+                                    "imageLarge": "images/DeriveTestResults32.png",
+                                    "command": "Command.DeriveTestResults.ja.python"
+                                }
+                            ]
+                        },
+                        // 「フィールド更新」グループ
+                        {
+                            "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.UpdateField",
+                            "label": "フィールド更新",
+                            "controls": [
+                                // 「IDを更新」ボタン
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.UpdateField.UpdateId",
+                                    "label": "IDを更新",
+                                    "description": "選択中のモデルとその子孫のモデルのIDをユニークになるように更新します。",
+                                    "imageLarge": "images/UpdateId32.png",
+                                    "command": "Command.UpdateId.ja.python"
+                                },
+                                // 「テスト結果を集計」ボタン
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.UpdateField.CountTestResults",
+                                    "label": "テスト結果　を集計", // ラベルは全角スペースで改行できます。
+                                    "description": "選択中のモデル及びその配下にある全モデルの総合情報を更新します。",
+                                    "imageLarge": "images/CountTestResults32.png",
+                                    "command": "Command.CountTestResults.ja.python"
+                                }
+                            ]
+                        },
+                        // 「影響分析」グループ
+                        {
+                            "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.AnalyzeImpact",
+                            "label": "影響分析",
+                            "controls": [
+                                // 「IFの影響箇所を抽出」ボタン
+                                {
+                                    "type": "Button",
+                                    "id": "EmbeddedSoftwareDevelopmentExtensions.DesignSupport.AnalyzeImpact.SearchImpactedComponentsAndInterfaces",
+                                    "label": "IFの影響箇所　を抽出",
+                                    "description": "選択中のソフトウェアコンポーネントまたはインタフェースから影響を受けるモデルを辿り、検索結果に登録します。\nダイアグラムで選択中の場合は影響箇所の経路となるコネクタをハイライトします。",
+                                    "imageLarge": "images/SearchImpactedComponentsAndInterfaces32.png",
+                                    "command": "Command.SearchImpactedComponentsAndInterfaces.ja.python"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        // コマンドを定義してコマンドハンドラと関連付けることで、リボンの拡張ポイントから独自処理を呼び出せます。
+        "commands": [
+            // 「ソフトウェア要求モデルを導出」のコマンド
+            {
+                "id": "Command.DeriveSoftwareRequirements.ja.python", // エントリポイント（ main.py ）内に定義したコマンドハンドラを指定します。
+                "execFunc": "derive_software_requirements",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor" // エディタ上でモデルが選択されている場合にボタンが有効になります。
+                }
+            },
+            // 「テスト結果モデルを導出」のコマンド
+            {
+                "id": "Command.DeriveTestResults.ja.python",
+                "execFunc": "derive_test_results",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            },
+            // 「IDを更新」のコマンド
+            {
+                "id": "Command.UpdateId.ja.python",
+                "execFunc": "update_id",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            },
+            // 「テスト結果を集計」のコマンド
+            {
+                "id": "Command.CountTestResults.ja.python",
+                "execFunc": "count_test_results",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            },
+            // 「IFの影響箇所を抽出」のコマンド
+            {
+                "id": "Command.SearchImpactedComponentsAndInterfaces.ja.python",
+                "execFunc": "search_impacted_components_and_interfaces",
+                "canExecWhen": {
+                    "uiState": "ModelSelectedInEditor"
+                }
+            }
+        ]
+    }
+}
