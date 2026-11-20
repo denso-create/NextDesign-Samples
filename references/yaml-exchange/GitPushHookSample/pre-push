@@ -1,0 +1,110 @@
+#!/bin/sh
+#
+# pre-push（YamlExchange のプッシュのフックのサンプル）
+#
+# プッシュの前に、ND のプロジェクトと YAML がそろっているかを確かめ、片方だけが変わっていれば、もう片方をそろえます。
+#   1. 今いるブランチか・コミットしていない変更が無いかを見る（検査は作業コピーで行うため）
+#   2. validate で YAML の書き方を検査し、diff でプロジェクトと YAML を比べる。差分が無ければ、そのままプッシュする
+#   3. 差分があり、プッシュするコミットで変わったのが
+#        YAML だけ        → ND のプロジェクトへ取り込む（import --complete --prune --write-back）
+#        プロジェクトだけ → YAML へ書き出す（export --all）
+#      そろえた結果は作業コピーに残してプッシュを止めます。中身を確かめてコミットし、もう一度プッシュしてください。
+#      両方が変わっていれば、何もせずに止めます（どちらを正とするかは人が決める）。
+#
+# 入れ方と気をつけることは README.md にあります。
+# 「ND のプロジェクト」は、リポジトリの中の *.nproj・*.nmdl・*.nprof です（YAML のフォルダの中は除く）。
+# 1つのリポジトリに ND のプロジェクトが1つの前提です。
+
+# ---- 設定（ここだけ直す。パスはリポジトリの根からの相対パス・区切りは /） ----
+PROJECT="ADAS.nproj"                                       # ND のプロジェクトファイル
+YAML_DIR="Yaml"                                            # YAML のフォルダ（export --all の書き先）
+YAML_MAIN="Yaml/先進運転システムソフト開発.yaml"           # YAML の主ファイル
+# CLI は、各自が git config yamlexchange.cli <フルパス> で設定します。無ければ PATH の yamlexchange を使います。
+YAMLEXCHANGE=$(git config --get yamlexchange.cli || echo yamlexchange)
+# --------------------------------------------------------------
+
+say() { printf 'pre-push: %s\n' "$1" >&2; }
+sync_status() { git -c core.quotepath=false status "$@" -- '*.nproj' '*.nmdl' '*.nprof' "$YAML_DIR"; }
+
+if ! command -v "$YAMLEXCHANGE" >/dev/null 2>&1; then
+  say "CLI（yamlexchange）が見つかりません。git config yamlexchange.cli <フルパス> を設定してください。"
+  exit 1
+fi
+
+# ---- 1. 今いるブランチか・コミットしていない変更が無いか ----
+# 標準入力には、プッシュする参照が1行ずつ「<手元の参照> <手元のSHA> <送り先の参照> <送り先のSHA>」で来ます。
+head=$(git rev-parse HEAD)
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$local_ref" in
+    refs/heads/*)
+      if [ "$local_sha" != "$head" ]; then
+        say "今いるブランチではないブランチをプッシュしようとしています。検査は作業コピーで行うので、そのブランチに切り替えてからプッシュしてください。"
+        exit 1
+      fi
+      ;;
+  esac
+done
+
+dirty=$(sync_status --porcelain)
+if [ -n "$dirty" ]; then
+  say "プロジェクトか YAML のフォルダに、コミットしていない変更があります。中身を確かめてコミットしてから、プッシュし直してください。"
+  printf '%s\n' "$dirty" >&2
+  exit 1
+fi
+
+# ---- 2. validate と diff ----
+say "YAML の書き方を検査しています（validate）…"
+"$YAMLEXCHANGE" validate --in "$YAML_MAIN" --metamodel "$YAML_DIR/nd.metamodel.yaml"
+rc=$?
+if [ $rc -ge 2 ]; then
+  say "YAML の書き方に誤りがあります（validate の終了コード $rc）。YAML を直して、プッシュし直してください。"
+  exit 1
+fi
+
+say "プロジェクトと YAML を比べています（diff）…"
+"$YAMLEXCHANGE" diff --project "$PROJECT" --in "$YAML_MAIN"
+rc=$?
+if [ $rc -eq 0 ]; then
+  say "プロジェクトと YAML はそろっています。プッシュします。"
+  exit 0
+elif [ $rc -ge 2 ]; then
+  say "比べられませんでした（diff の終了コード $rc）。上の内容を直して、プッシュし直してください。"
+  exit 1
+fi
+
+# ---- 3. 差分があるとき: プッシュするコミット（どのリモートにもまだ無いコミット）で変わったものを見る ----
+yaml_changed=0
+project_changed=0
+set -f
+IFS='
+'
+for path in $(git -c core.quotepath=false log --format= --name-only HEAD --not --remotes); do
+  case "$path" in
+    "$YAML_DIR"/*) yaml_changed=1 ;;
+    *.nproj | *.nmdl | *.nprof) project_changed=1 ;;
+  esac
+done
+unset IFS
+set +f
+
+if [ $yaml_changed -eq 1 ] && [ $project_changed -eq 0 ]; then
+  say "YAML だけが変わっています。ND のプロジェクトへ取り込みます（import）…"
+  say "ND で $PROJECT を開いているなら、取り込んだ後に開き直してください（開いたまま保存すると、取り込んだ内容が上書きされます）。"
+  "$YAMLEXCHANGE" import --project "$PROJECT" --in "$YAML_MAIN" --complete --prune --write-back
+elif [ $project_changed -eq 1 ] && [ $yaml_changed -eq 0 ]; then
+  say "ND のプロジェクトだけが変わっています。YAML へ書き出します（export）…"
+  "$YAMLEXCHANGE" export --project "$PROJECT" --all
+else
+  say "プロジェクトと YAML に差分があります（プッシュするコミットで両方が変わったか、前からそろっていません）。どちらを正とするかを決めてそろえ、コミットしてからプッシュし直してください。"
+  say "  YAML を正とする … \"$YAMLEXCHANGE\" import --project \"$PROJECT\" --in \"$YAML_MAIN\" --complete --prune --write-back"
+  say "  ND を正とする   … \"$YAMLEXCHANGE\" export --project \"$PROJECT\" --all"
+  exit 1
+fi
+rc=$?
+if [ $rc -ge 2 ]; then
+  say "そろえられませんでした（終了コード $rc）。上の内容を直して、プッシュし直してください。"
+  exit 1
+fi
+say "そろえた結果は作業コピーにあります（まだコミットしていません）。中身を確かめてコミットし、もう一度プッシュしてください:"
+sync_status --short >&2
+exit 1
